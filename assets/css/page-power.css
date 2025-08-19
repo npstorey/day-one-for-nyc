@@ -41,6 +41,7 @@
 .page--power nav.toc li:not(.is-open) > a .toc-caret::before{ content: "\25B8"; } /* small right triangle */
 
 /* Hide caret now that clicking the text toggles sections */
+/* No caret buttons in simplified TOC */
 .page--power nav.toc .toc-caret { display: none !important; }
 
 /* List rhythm */
@@ -50,7 +51,8 @@
 /* Fallback: with JS disabled (html.no-js), submenus remain visible */
 .page--power nav.toc > ul.toc__menu > li ul { padding-left: 12px; }
 /* Default with JS: collapse submenus until user interacts */
-.js .page--power nav.toc > ul.toc__menu > li > ul { display: none; }
+/* Keep subsections visible; no accordion behavior */
+.js .page--power nav.toc > ul.toc__menu > li > ul { display: block; }
 
 /* Ensure anchored headings account for fixed top navigation */
 /* remove heading scroll-margin offset; JS handles precise offset */
