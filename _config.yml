@@ -53,8 +53,8 @@ defaults:
     values:
       classes: wide
 
-# Search
-search: true
+# Search (disable Minimal Mistakes search UI)
+search: false
 
 timezone: America/New_York
 
