@@ -20,6 +20,13 @@ kramdown:
 
 permalink: pretty
 
+# Sass configuration
+sass:
+  style: compressed
+  load_paths:
+    - assets/css
+    - _sass
+
 # Collections
 collections:
   levers:
