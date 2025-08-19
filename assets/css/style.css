@@ -1,0 +1,2521 @@
+---
+layout: null
+---
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&display=swap');
+@import "header.css";
+/* --- Base --- */
+:root{
+  /* Map legacy brand variables to current tokens */
+  --brand-primary:  var(--ocean);
+  --brand-secondary:var(--ocean);
+  --brand-accent:   var(--aqua);
+  --brand-red:      var(--aqua);
+  --zo-footer:      var(--ink);
+  --zo-light-grey:  rgba(255,255,255,.85);
+  --ink:            {{ site.data.style-tokens.colors.ink }};
+  --ink-subtle:     {{ site.data.style-tokens.colors.ink_subtle }};
+  --paper:          {{ site.data.style-tokens.colors.paper }};
+  --card:           {{ site.data.style-tokens.colors.card }};
+  --line:           {{ site.data.style-tokens.colors.line }};
+  --maxw:          {{ site.data.style-tokens.measure.max_text_width_px }}px;
+  --r-sm:          {{ site.data.style-tokens.radius.sm }};
+  --r-md:          {{ site.data.style-tokens.radius.md }};
+  --r-xl:          {{ site.data.style-tokens.radius.xl }};
+  --s-xs:          {{ site.data.style-tokens.space.xs }};
+  --s-sm:          {{ site.data.style-tokens.space.sm }};
+  --s-md:          {{ site.data.style-tokens.space.md }};
+  --s-lg:          {{ site.data.style-tokens.space.lg }};
+  --s-xl:          {{ site.data.style-tokens.space.xl }};
+  --s-xxl:         {{ site.data.style-tokens.space.xxl }};
+  --ts-h1:         {{ site.data.style-tokens.type_scale.h1 }};
+  --ts-h2:         {{ site.data.style-tokens.type_scale.h2 }};
+  --ts-h3:         {{ site.data.style-tokens.type_scale.h3 }};
+  --ts-body:       {{ site.data.style-tokens.type_scale.body }};
+  --sh-sm:         {{ site.data.style-tokens.shadow.sm }};
+  --sh-md:         {{ site.data.style-tokens.shadow.md }};
+  --tag-bg:        {{ site.data.style-tokens.colors.tag_bg }};
+  --tag-text:      {{ site.data.style-tokens.colors.tag_text }};
+}
+
+/* Kill any stray footer top rules/lines */
+.page__footer::before,
+.donyc-footer::before,
+.donyc-footer__inner::before { content: none !important; display: none !important; }
+
+.donyc-footer { border-top: 0 !important; box-shadow: none !important; }
+
+/* ---- ToC / On-this-page card polish ---- */
+.sidebar__right {
+  position: static; /* Let page-specific CSS handle sticky behavior */
+  /* Avoid inner scrollbars that create a right gutter */
+  max-height: none;
+  overflow: visible !important;
+}
+
+.dayone-report .sidebar__right .toc,
+.page--power .sidebar__right .toc {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-1);
+  overflow: visible !important; /* allow sticky children inside */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.toc header{ background: var(--ink); padding: .75rem 1rem; }
+.toc header .nav__title{
+  color:#fff; margin:0; font-weight:700;
+  background: transparent !important;
+  padding: 0 !important; border: 0 !important;
+}
+
+.toc__title {
+  background: var(--ink);
+  color: #fff;
+  padding: .75rem 1rem;
+  font-weight: 700;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: .25rem 0;
+}
+.toc li { margin: 0; }
+.toc li + li { border-top: 1px solid var(--line); }
+
+.toc a { display:block; padding:.6rem 1rem; color: var(--ink) !important; text-decoration:none; border-radius:0; border:0 !important; }
+.toc__menu a{ padding:.6rem 1rem !important; border:0 !important; }
+.toc__menu li + li a{ border-top: 1px solid var(--line) !important; }
+.toc .toc__menu a{ background: transparent !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; }
+.toc a:hover { background: var(--accent-soft); }
+.toc a:focus-visible {
+  outline: 3px solid var(--aqua);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.toc .toc-meta {
+  display: block;
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: .15rem;
+}
+
+/* Appointments filters -> match Levers chips without HTML edits */
+.appt-filters, .appointments__filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+/* Base chip used on Levers (existing) — keep as-is (defined elsewhere too) */
+.tag, .chip, .badge {
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.35rem .65rem;
+  border:2px solid var(--aqua);
+  color: var(--ocean);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-weight: 600;
+  line-height:1;
+}
+
+/* Make the Appointments filters render like chips WITHOUT HTML changes */
+.appt-filters a,
+.appt-filters button,
+.appt-filters .filter,
+.appt-filters .btn,
+.appointments__filters a,
+.appointments__filters button,
+.appointments__filters .filter,
+.appointments__filters .btn,
+#typePills button {
+  all: unset;
+  display:inline-flex; align-items:center;
+  padding:.35rem .65rem !important;
+  border:2px solid var(--aqua) !important;
+  color: var(--ocean) !important;
+  background: var(--accent-soft) !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important; line-height:1 !important; cursor: pointer !important;
+  margin-right: .5rem !important; margin-top: .5rem !important;
+}
+
+/* Normalize the inline-created filter pill button on Appointments */
+#typePills .tag,
+#typePills .tag--pill{
+  all: unset;
+  display:inline-flex; align-items:center;
+  padding:.35rem .65rem; border-radius:999px; font-weight:600; line-height:1;
+  border:2px solid var(--aqua); background: var(--accent-soft); color: var(--ocean);
+}
+
+.appt-filters a:hover,
+.appt-filters button:hover,
+.appointments__filters a:hover,
+.appointments__filters button:hover { background: var(--aqua); color: var(--accent-ink); }
+
+.appt-filters .is-active,
+.appt-filters [aria-pressed="true"],
+.appointments__filters .is-active,
+.appointments__filters [aria-pressed="true"],
+#typePills .tag--active {
+  background: var(--aqua) !important;
+  color: var(--accent-ink) !important;
+  border-color: var(--aqua) !important;
+}
+
+/* Reliable sticky header for tables (single source of truth) */
+.table--sticky thead th {
+  position: sticky;
+  top: var(--sticky-offset, calc(var(--nav-h) + 12px)); /* avoids hiding under sticky header */
+  z-index: 3;
+  background: #F0F7FD;
+}
+
+/* Prevent first row from visually overlapping header */
+.table--sticky tbody tr:first-child td { border-top: 1px solid var(--line); }
+
+/* Headings scrolling never hide under sticky nav */
+[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+/* Slightly tighter hero CTA spacing */
+.hero .cta-button { margin-top: .35rem; }
+
+/* ======= Global rhythm + type scale (consistent across pages) ======= */
+:root{
+  /* container + rhythm */
+  --container-w: min(1120px, calc(100% - 48px));
+  --section-gap: clamp(24px, 5vw, 48px);
+  --block-gap: clamp(16px, 3.2vw, 28px);
+
+  /* typography scale (desktop -> mobile via clamp) */
+  --h1: clamp(36px, 5.2vw, 48px);
+  --h2: clamp(28px, 3.8vw, 36px);
+  --h3: clamp(20px, 2.6vw, 24px);
+  --lead: clamp(18px, 2.2vw, 20px);
+  --body: 18px;                 /* base body */
+  --small: 15px;
+
+  --lh-tight: 1.2;
+  --lh-title: 1.25;
+  --lh-body: 1.6;
+
+  /* existing brand tokens assumed:
+     --ink (navy), --ocean (cta), --aqua (accent), --paper, --cloud, --line, shadows, radius */
+}
+
+.page__inner-wrap,
+.donyc-footer__inner,
+.topnav__inner{
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+h1{ font-size: var(--h1); line-height: var(--lh-title); margin: 0 0 16px; }
+h2{ font-size: var(--h2); line-height: var(--lh-title); margin: var(--block-gap) 0 10px; }
+h3{ font-size: var(--h3); line-height: var(--lh-title); margin: 14px 0 8px; }
+.page__content p{ font-size: var(--body); line-height: var(--lh-body); margin: 10px 0; }
+small, .muted, .caption{ font-size: var(--small); color: var(--muted); }
+
+/* Consistent section spacing */
+.section, .page__content > .card--section{ margin-top: var(--section-gap); }
+
+/* Hero logo sizing without layout shifts */
+.hero img{
+  width: clamp(240px, 45vw, 520px);
+  height: auto;
+  display: block;
+  margin: 8px auto 4px;
+}
+
+/* Eyebrow / kicker utility */
+.eyebrow{
+  font-size: var(--small);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ===== Header nav alignment, states, and accessibility ===== */
+/* Header height + padding refined for visual balance */
+#topnav.topnav{
+  min-height: 68px;
+  background: var(--ink);
+}
+.topnav__inner{ gap: 18px; }
+.topnav__brand .topnav__logo{ height: 34px; width: auto; }
+
+/* Current page state */
+.topnav__link[aria-current="page"]{
+  color:#fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* Header CTA should match button system */
+.topnav__cta .cta-button{
+  background: var(--ocean);
+  color: #fff;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  padding: .65rem 1.05rem;
+}
+.topnav__cta .cta-button:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ===== Card polish (hero + content) ===== */
+/* Card refinement: slightly lighter shadow + consistent top accent */
+.card--section{
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-1);
+  padding: clamp(18px, 3vw, 28px);
+  position: relative;
+}
+.card--section::before{
+  content:"";
+  position:absolute; inset: 0 0 auto 0;
+  height: 4px; background: var(--aqua);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+/* Hero block variant (your existing hero uses a dark card) */
+.hero{
+  background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(0,0,0,0.02)) var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+}
+.hero .hero__rule{ height: 6px; background: var(--aqua); border-radius: 999px; width: 140px; margin: 10px auto; }
+.hero .cta-button{ margin-top: 8px; }
+
+/* Buttons (global + header CTA) */
+.cta-button,
+.topnav__cta .cta-button{
+  background: var(--ocean);
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: .7rem 1.1rem;
+  transition: transform .06s ease, background .15s ease;
+}
+.cta-button:hover,
+.topnav__cta .cta-button:hover{
+  background: var(--ocean-700);
+  transform: translateY(-1px);
+}
+.cta-button:active{ transform: translateY(0); }
+
+.cta-button--ghost{
+  background: transparent;
+  color: var(--ocean);
+  border-color: var(--ocean);
+}
+.cta-button--ghost:hover{
+  background: var(--accent-soft);
+}
+
+/* Chips/pills/badges */
+.tag, .chip, .badge{
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .35rem .65rem;
+  border: 2px solid var(--aqua);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border-radius: 999px;
+  font-weight: 600; line-height: 1;
+}
+.tag:hover, .chip:hover, .badge:hover{
+  background: var(--aqua);
+  color: var(--accent-ink); /* readable on the stronger accent */
+}
+
+/* Card top “kicker” rules + hero rule use the new accent */
+.card--section::before,
+.levers-list .card::before,
+.hero .hero__rule{
+  background: var(--aqua);
+}
+
+/* Link underlines in running text key off the accent */
+.page__content p a{
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(34,211,169,.6);
+}
+
+/* Focus rings */
+:where(a, button, input, select, textarea):focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ===== Buttons, chips, and links (micro-interactions) ===== */
+/* Buttons */
+.cta-button{
+  background: var(--ocean);
+  color:#fff;
+  border-radius: 999px;
+  border:2px solid transparent;
+  padding:.72rem 1.1rem;
+  transition: transform .06s ease, background .15s ease;
+}
+.cta-button:hover{ transform: translateY(-1px); }
+.cta-button:active{ transform: translateY(0); }
+.cta-button:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; }
+
+/* Chips */
+.badge, .chip, .tag{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.38rem .65rem;
+  border:2px solid var(--aqua);
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-weight: 650;
+  letter-spacing:.02em;
+}
+
+/* Link underline polish in running text */
+.page__content p a{
+  text-decoration-color: rgba(34,211,169,.6);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+/* ===== Tables (Appointments Directory) ===== */
+/* Generic table polish */
+table{
+  width:100%;
+  border-collapse: separate;
+  border-spacing:0;
+  background: var(--paper);
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: visible; /* allow sticky header to render without clipping */
+  box-shadow: var(--shadow-1);
+}
+thead th{
+  background:#F2F8FC;
+  font-weight:700;
+  color: var(--ink);
+  border-bottom:1px solid var(--line);
+  padding:12px 14px;
+}
+tbody td{ padding:12px 14px; }
+tbody tr:nth-child(odd){ background:#FCFEFF; }
+tbody tr:hover{ background:#F6FBFD; }
+
+/* Make header sticky when table has .table--sticky (preferred) */
+.table--sticky thead th{
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+/* “Open” link */
+td a[href]{
+  font-weight: 600;
+}
+td .link-pill{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.32rem .6rem;
+  border:2px solid var(--aqua);
+  border-radius:999px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+td .link-pill:hover{ background: var(--aqua); color: var(--accent-ink); }
+td .link-pill.is-disabled{ opacity:.45; pointer-events:none; }
+
+/* ===== Footer tightening ===== */
+.page__footer{ background: var(--ink) !important; padding: 0 !important; border:0 !important; }
+.page__footer-follow, .page__footer-copyright{ display:none !important; }
+
+.donyc-footer{
+  background: var(--ink);
+  color: rgba(255,255,255,.9);
+  border-top: 4px solid var(--ocean);
+}
+.donyc-footer__inner{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr auto;
+  gap: 2rem;
+  padding: 28px 16px;
+}
+.donyc-footer__nav{
+  display:grid; grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: .45rem 1rem; list-style:none; padding:0; margin:0;
+}
+.donyc-footer__nav a{ color:#D9F7FF; font-weight:600; }
+.donyc-footer__nav a:hover{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+.donyc-footer__social{ display:flex; gap:.75rem; justify-content:flex-end; }
+.donyc-footer__social .social{
+  width:36px; height:36px; border-radius:999px;
+  border:2px solid #D9F7FF; color:#D9F7FF; display:inline-flex; align-items:center; justify-content:center;
+}
+.donyc-footer__social .social:hover{ background:#D9F7FF; color:var(--ink); }
+
+@media (max-width: 900px){
+  .donyc-footer__inner{ grid-template-columns: 1fr; gap: 1rem; }
+  .donyc-footer__social{ justify-content:flex-start; }
+}
+
+/* ===== Accessibility quick wins ===== */
+/* Always show clear focus on interactive things */
+a:focus-visible, button:focus-visible, .chip:focus-visible, .cta-button:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Don’t let sticky header cover hash targets */
+[id]::before{
+  content:"";
+  display:block;
+  height: 72px; /* ~header height */
+  margin-top: -72px;
+  visibility:hidden;
+}
+
+/* === Day One for NYC — Design Tightening (tokens + unified components) === */
+:root{
+  /* Core palette */
+  --ink:   #0F2742;   /* header/footer bg, headings */
+  --ocean: #0F927B;   /* PRIMARY CTA (buttons, focus fill) */
+  --aqua:  #22D3A9;   /* accent (rules, chips border, focus ring) */
+  --paper: #FFFFFF;   /* cards */
+  --cloud: #F6F8FB;   /* page bg */
+  --line:  #E7EEF5;   /* borders/dividers */
+  --muted: #5B728B;   /* secondary text */
+
+  /* New accent scales */
+  --ocean-700: #0C7B67;  /* CTA hover/active */
+  --accent-soft: #E9FFF8;/* soft bg for chips/pills */
+  --accent-ink: #0C6E60; /* readable text on accent-soft */
+  --focus: rgba(34,211,169,.45); /* focus ring color */
+
+  /* Type scale (Inter or system sans) */
+  --h1: clamp(36px, 4vw, 48px);
+  --h2: clamp(28px, 3vw, 36px);
+  --h3: 24px;
+  --body: 18px;
+  --small: 15px;
+
+  /* Layout */
+  --container-w: min(1200px, calc(100% - 32px));
+  --nav-h: 72px;  --nav-h-sm: 56px;
+
+  /* Shape & shadow */
+  --radius-lg: 16px;  --radius-md: 12px;  --radius-sm: 10px;
+  --shadow-1: 0 1px 2px rgba(15,39,66,.05), 0 6px 18px rgba(15,39,66,.08);
+  --shadow-2: 0 2px 6px rgba(15,39,66,.08), 0 12px 28px rgba(15,39,66,.12);
+}
+
+/* Type stack */
+html{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; }
+
+/* Links & focus */
+a{ color: var(--ocean); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+a:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; border-radius:6px; }
+
+/* Buttons */
+.cta-button{
+  background: var(--ocean);
+  color:#fff; border:2px solid transparent; border-radius:999px;
+  padding:.7rem 1.1rem; font-weight:700;
+  transition: transform .06s ease, background .15s ease;
+}
+.cta-button:hover{ background: var(--ocean-700); transform: translateY(-1px); }
+.cta-button:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; }
+.cta-button--ghost{ background:transparent; color:var(--ocean); border-color:var(--ocean); }
+.cta-button--ghost:hover{ background: var(--accent-soft); }
+
+@media (prefers-reduced-motion: reduce){
+  .cta-button{ transition: background .15s ease; transform: none !important; }
+}
+
+/* Cards & section rhythm */
+.section{ padding-top: 1rem; }
+.card--section{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-1); padding:2rem; position:relative;
+}
+.card--section + .card--section{ margin-top:2rem; }
+.card--section::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:5px;
+  background:var(--aqua); border-top-left-radius:var(--radius-lg); border-top-right-radius:var(--radius-lg);
+}
+
+/* Chips/badges */
+.badge,.chip,.tag{
+  display:inline-flex; align-items:center; gap:.4rem; line-height:1;
+  padding:.38rem .65rem; font-weight:700; border-radius:999px;
+  border:2px solid var(--aqua); color: var(--accent-ink); background: var(--accent-soft);
+}
+.badge:hover{ background:var(--aqua); color: var(--accent-ink); }
+
+/* Tables (Appointments) */
+table{ border-collapse:separate; border-spacing:0; width:100%;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-1);
+}
+thead th{ position:sticky; top:0; z-index:1; background:#F0F7FD; font-weight:700; border-bottom:1px solid var(--line); text-align:left; }
+tbody tr{ transition: background .12s ease; }
+tbody tr:hover{ background:#FAFDFF; }
+td small, td .sub{ display:block; color:var(--muted); font-size:var(--small); margin-top:.15rem; }
+th:first-child, td:first-child{ min-width:320px; }
+
+/* Header: lock to container width, logo size, CTA color */
+#topnav.topnav{ position:sticky; top:0; z-index:500; background:var(--ink); min-height:var(--nav-h); }
+.topnav__inner{ max-width:var(--container-w); margin:0 auto; padding:0 16px; display:flex; align-items:center; gap:16px; height:100%; }
+.topnav__brand .topnav__logo{ height:40px; width:auto; display:block; object-fit:contain; }
+@media (max-width:768px){ #topnav.topnav{ min-height:var(--nav-h-sm); } .topnav__brand .topnav__logo{ height:30px; } }
+.topnav__link{ color:rgba(255,255,255,.88); font-weight:600; }
+.topnav__link:hover, .topnav__link[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; text-decoration-thickness:2px; }
+.topnav__cta .cta-button{ background:var(--ocean); color:#fff; }
+
+/* Footer: align, top border, nav/social */
+.page__footer{ background:var(--ink); padding:0; }
+.donyc-footer{ background:var(--ink); color:rgba(255,255,255,.92); border-top:4px solid var(--ocean); }
+.donyc-footer__inner{ max-width:var(--container-w); margin:0 auto; padding:2.25rem 16px; display:grid; grid-template-columns:1.2fr 1fr auto; gap:2rem; }
+.donyc-footer__nav a{ color:#D9F7FF; font-weight:700; }
+.donyc-footer__nav a:hover{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+.donyc-footer__social .social{ width:36px; height:36px; border-radius:999px; border:2px solid #D9F7FF; color:#D9F7FF; display:inline-flex; align-items:center; justify-content:center; }
+.donyc-footer__social .social:hover{ background:#D9F7FF; color:var(--ink); }
+@media (max-width:900px){ .donyc-footer__inner{ grid-template-columns:1fr; } .donyc-footer__social{ justify-content:flex-start; } }
+
+/* Hero CTA consistency */
+.hero .cta-button{ background:var(--ocean); color:#fff; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: {{ site.data.style-tokens.type.body }};
+  line-height: 1.6;
+}
+
+.page__content { max-width: var(--maxw); }
+/* Appointments: slightly wider reading container */
+.appointments .page__content { max-width: min(1280px, 96vw); margin-left: auto; margin-right: auto; }
+.page__content > * { margin-bottom: var(--s-lg); }
+
+/* Prevent fixed nav from overlapping top content */
+/* Reserve space for fixed nav so content isn't overlapped */
+html{ scroll-padding-top: 96px; }
+body{ padding-top: 96px; }
+/* On the homepage, before the topnav reveals, remove the reserved padding
+   to bring the hero higher on initial load */
+body.no-topnav-pad{ padding-top: 0; }
+
+h1, h2, h3 {
+  font-family: {{ site.data.style-tokens.type.heading }};
+  margin-top: var(--s-xl);
+  color: var(--brand-primary);
+}
+h1 { font-size: var(--ts-h1); line-height: 1.15; letter-spacing: -0.5px; font-weight: 800; text-transform: none; }
+h2 { font-size: var(--ts-h2); font-weight:700; position:relative; padding-left:.75rem; padding-bottom: var(--s-xs); border-bottom:3px solid var(--brand-red); margin-top: var(--s-xl); }
+h2::before{ content:""; position:absolute; left:0; top:.2em; bottom:.2em; width:4px; border-radius:999px; background: var(--brand-accent); }
+h3 { font-size: var(--ts-h3); position:relative; padding-left: .6rem; }
+h3::before{ content:""; position:absolute; left:0; top:.3em; bottom:.3em; width:4px; border-radius:999px; background: var(--brand-accent); }
+
+p, li { font-size: var(--ts-body); color: var(--ink); }
+a{ color: var(--brand-primary); text-decoration: none; font-weight:600; }
+a:hover{ color: var(--brand-accent); text-decoration: none; }
+:focus { outline: 3px solid rgba(255,170,0,.45); outline-offset: 2px; }
+/* Default focus; avoid orange brower fallback */
+a:focus, button:focus, .btn:focus, input:focus{ outline: 3px solid var(--c-focus); outline-offset: 2px; }
+/* Levers filter input: enforce brand focus color */
+#lev-q:focus{ outline: 3px solid var(--c-focus) !important; outline-offset: 2px !important; box-shadow: none !important; }
+
+/* --- Layout bits --- */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--s-lg); }
+.appointments .container { max-width: min(1300px, 98vw); padding-left: 0; }
+
+/* Align Appointments table left edge with site logo, keep right edge fixed */
+@media (min-width: 1024px){
+  /* Keep right edge consistent while moving left edge toward the logo.
+     Expressed as percentages of the full screen. On wide desktop, the
+     table occupies ~97% of the viewport, starting ~1% from the left,
+     so its right edge remains at ~98% (1% + 97%). */
+  .appointments .container{
+    max-width: none;
+    width: 97%;
+    margin-left: 1%;
+    margin-right: 0;
+    padding-left: 0;
+  }
+  .appointments .page__content{ max-width: none; }
+}
+.card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-xl); padding: var(--s-xl); box-shadow: var(--sh-sm); transition: box-shadow .2s ease, transform .2s ease; overflow: hidden; }
+.card--section::before { content:""; position:absolute; left:0; top:0; width:100%; height:4px; background: var(--brand-red); }
+.card:hover { box-shadow: var(--sh-md); transform: translateY(-1px); }
+.site-subnav { background: #fff; border-color: var(--line); }
+
+/* --- Buttons & tags --- */
+.btn{
+  display:inline-block;
+  padding:.6rem 1rem;
+  border-radius: 9999px;
+  font-weight:700;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  text-decoration: none !important;
+  transition: box-shadow .15s ease, filter .15s ease;
+}
+.btn--primary{ background: var(--brand-primary); color:#fff; border:1px solid var(--brand-primary); }
+.btn--secondary{ background: var(--brand-red); color:#fff; border:1px solid var(--brand-red); }
+.btn--accent{ background: var(--brand-accent); color: var(--brand-primary); border:1px solid var(--brand-accent); }
+.btn--outline{ background: transparent; color:#fff; border:2px solid rgba(255,255,255,.85); }
+.btn:hover{ filter: brightness(.96); }
+.btn--accent:hover{ filter: brightness(.96); }
+.button, .btn.gray, .btn--muted { background: var(--ocean) !important; color:#fff !important; border-color: var(--ocean) !important; }
+.badge, .tag {
+  display:inline-block;
+  padding:.28rem .7rem;
+  border-radius: 9999px;
+  font-size:.78rem;
+  font-weight:700;
+  text-transform: uppercase;
+  letter-spacing:.35px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid transparent;
+  box-shadow: 2px 2px 3px var(--brand-red);
+}
+.tag:hover { background: var(--brand-accent); color: var(--brand-primary); }
+
+/* --- CTA pill/button system --- */
+.cta-pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 22px; border-radius:9999px; font-weight:700; letter-spacing:0.04em;
+  background: var(--aqua); color: var(--accent-ink); text-decoration:none;
+  box-shadow:none;
+  border:1px solid transparent;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+}
+.cta-pill:hover{
+  background: var(--aqua);
+  filter: brightness(.97);
+  color: var(--accent-ink);
+}
+.cta-pill:active{ transform: translateY(0); }
+.cta-pill:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; }
+.cta-pill--inverse{ background: var(--ocean); color:#fff; box-shadow:none; }
+.cta-pill--inverse:hover{ background: var(--ocean-700); color:#fff; }
+
+/* --- CTA button (tokenized) --- */
+.cta-button {
+  background-color: var(--ocean);
+  color: #fff;
+  font-family: 'Archivo', 'Archivo Black', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 18px; /* set to 18px per request */
+  transition: all 0.15s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: var(--ocean-700);
+  color: #fff;
+  text-decoration: none !important;
+}
+
+.cta-button:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  text-decoration: none !important;
+}
+
+/* Push-underlay wrapper (removed campaign physics) */
+.cta-push{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-push::before{ content:none; }
+.cta-push > .cta-button{
+  position: relative;
+  z-index: 1;
+}
+.cta-push:hover > .cta-button{
+  transform: translate(-3px, 4px);
+  filter: brightness(1.06);
+}
+.cta-push:active > .cta-button{
+  transform: translate(-1px, 2px);
+}
+
+/* --- Inputs --- */
+input[type="text"], input[type="search"]{ background:#fff; color: var(--ink); border:1px solid var(--line); border-radius: var(--r-md); padding:.6rem .7rem; }
+
+/* --- Tables --- */
+table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius: var(--r-xl); overflow:hidden; }
+th, td{ padding:.65rem .9rem; border-bottom:1px solid var(--line); }
+thead th{ background: #F0F7FD; color: var(--ink); font-weight:700; border-bottom:1px solid var(--line); position: sticky; top:0; text-align:left; }
+tbody tr:hover{ background: #F6FBFD; }
+
+/* --- Callout & Sources --- */
+.callout{ border-left:6px solid var(--aqua); background: color-mix(in oklab, var(--aqua) 10%, white); padding: var(--s-md) var(--s-lg); border-radius: 0 var(--r-md) var(--r-md) 0; }
+.sources{ border-top:1px solid var(--line); margin-top:2rem; padding-top:1rem; font-size:.95rem; }
+
+/* --- Hero --- */
+.hero--clean{
+  background: var(--ink);
+  color:#fff;
+  padding: calc(var(--s-xl) + .25rem) var(--s-xl);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-md);
+}
+.hero--clean .hero__title{
+  margin: 0 0 .35rem 0;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  text-transform: none;
+  color:#fff;
+}
+.hero--clean .hero__subtitle{
+  margin: 0 0 .6rem 0;
+  color: rgba(255,255,255,.92);
+}
+.hero--clean .hero__rule{
+  height: 4px; width: clamp(140px, 28%, 240px);
+  background: var(--aqua); border-radius:999px; margin:.2rem 0 .9rem 0;
+}
+
+/* Hero logo image */
+.hero__logo{
+  display: block;
+  max-width: clamp(240px, 60vw, 720px);
+  height: auto;
+}
+
+/* Hero CTA buttons: unified */
+.hero--clean .btn--primary,
+.hero--clean .btn--accent{ background: var(--ocean); color: #fff; border: 1px solid var(--ocean); box-shadow: none; }
+.hero--clean .btn--primary:hover,
+.hero--clean .btn--accent:hover{ background: var(--ocean-700); color: #fff; }
+
+/* Dark mode removed: force light theme across system settings */
+
+/* Section header rhythm */
+/* underline handled via border-bottom above */
+
+/* Section title utility */
+.section-title {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 4px solid var(--aqua);
+  padding-bottom: var(--s-xs);
+  margin-bottom: var(--s-md);
+}
+
+/* Page-specific tweaks */
+.page--levers a:hover{ color: var(--ocean); }
+
+/* Utilities */
+.stack { display:flex; flex-direction:column; gap: var(--s-lg); }
+.btnrow { display:flex; gap: var(--s-sm); flex-wrap: wrap; align-items:center; }
+
+/* Link colors globally consistent */
+.page__content a{ color: var(--ocean); text-decoration: none; font-weight: 600; }
+.page__content a:not(.cta-button):not(.cta-pill):hover{ color: var(--ocean-700); text-decoration: none; }
+
+/* External links keep same color scheme for consistency */
+a[rel="external"], a[href*="http"]:not([href*="day-one-nyc"]) { color: var(--ocean); }
+a[rel="external"]:hover, a[href*="http"]:not([href*="day-one-nyc"]):hover { color: var(--ocean-700); }
+
+/* Remove global h1 uppercase if set elsewhere */
+h1 { text-transform: none; }
+
+/* Section wrapper spacing */
+.section { margin: var(--s-xl) 0; }
+.section .card { padding: var(--s-xl); }
+/* Nudge the hero closer to the top. Reduce even further on the homepage */
+.page__content > .hero { margin-top: var(--s-md); margin-bottom: .25rem; }
+body.is-home .page__content > .hero { margin-top: var(--s-sm); }
+
+/* Card title spacing */
+.card h2 { margin-top: 0; }
+.card h3 { margin-top: var(--s-md); }
+
+/* Transitions */
+button, .btn, a, .card, table tr { transition: all .2s ease; }
+
+/* --- Tier pill --- */
+.tier-pill{
+  display:inline-block; padding:.25rem .55rem; font-weight:700; letter-spacing:.3px;
+  text-transform:uppercase; font-size:.8rem; border-radius:999px;
+  color: var(--ocean); background:#fff; border:2px solid var(--ocean);
+}
+.tier-pill[data-tier="A"]{ border-color: var(--aqua); color: var(--aqua); }
+.tier-pill[data-tier="B"]{ border-color: var(--ocean); color: var(--ocean); }
+
+/* --- Footer --- */
+footer{ background: var(--ink); color: rgba(255,255,255,.9); }
+footer a{ color: var(--ocean); text-decoration:none; }
+footer a:hover{ color: var(--aqua); text-decoration:none; }
+
+/* Removed campaign-specific button shadow variants */
+
+/* --- Cards: top accent and hover lift (neutral, no red on hover) --- */
+.card--section::before{ background: var(--aqua); }
+.card.card--section:hover::before{
+  background: var(--mint);
+  height: 4px;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+/* Avoid double-thick accent from earlier border-top rules */
+.card.card--section{ border-top: 0 !important; }
+
+/* ===== Link hover color: teal (mint) instead of orange ===== */
+.page__content a:not(.cta-button):not(.cta-pill):hover{
+  color: var(--mint) !important;
+  text-decoration-color: var(--mint) !important;
+}
+.onepager .page__content a:not(.cta-button):not(.cta-pill):hover{
+  color: var(--mint) !important;
+  text-decoration-color: var(--mint) !important;
+}
+
+/* ===== Topnav: center menu between logo and CTA, teal hover with no underline ===== */
+@media (min-width: 861px){
+  /* Use grid to truly center the nav list between logo and CTA */
+  .topnav__inner{ display: grid; grid-template-columns: auto 1fr auto; align-items: center; }
+  /* REMOVED display: contents to preserve mobile dropdown behavior */
+  .topnav__menu{ grid-column: 2 / 4; display: flex; justify-content: space-between; }
+  .topnav__list{ margin-left: 0; margin-right: 0; }
+  .topnav__cta{ margin-left: auto; }
+}
+
+/* ===== Levers page fixes ===== */
+/* Remove stray white gap under fixed header on levers pages */
+.page--levers .page__title,
+.page--levers .page-title,
+.page--levers .page__content{ margin-top: 0; }
+
+/* Title color and remove orange/blue highlight */
+.section.levers .page__title,
+.page--levers .page__title,
+.page--levers .page-title{
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+.page__title a,
+.page-title a{
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+.page__title a:hover,
+.page-title a:hover{
+  color: var(--mint) !important;
+  text-decoration: none !important;
+}
+
+/* Filter/category pills outlined in teal (menu row + on-card tags) */
+#lev-tags .badge,
+.levers .tag,
+.page--levers .tag,
+.page--levers .badge{
+  border: 2px solid var(--mint) !important;
+  color: var(--mint) !important;
+  background: transparent !important;
+}
+#lev-tags .badge:hover,
+.levers .tag:hover,
+.page--levers .tag:hover,
+.page--levers .badge:hover{
+  background: color-mix(in oklab, var(--mint) 12%, white) !important;
+}
+
+.topnav__menu .topnav__link:hover{
+  color: var(--mint) !important;
+  text-decoration: none !important;
+}
+
+/* Remove default browser margin that creates a white strip above the fixed/sticky header */
+html, body{ margin: 0 !important; }
+
+/* Ensure the header is flush to the very top on all non-home pages */
+body:not(.is-home) .topnav{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0; right: 0;
+  opacity: 1 !important;
+}
+
+/* --- Headings & subheads --- */
+h2{ font-weight:800; line-height:1.2; }
+h3{ font-weight:700; line-height:1.25; }
+
+/* Mobile tweaks for pills/buttons */
+@media (max-width: 480px){
+  .btn{ padding:.55rem .9rem; }
+  .badge, .tag{ font-size:.76rem; padding:.26rem .6rem; }
+}
+
+/* --- One-pager layout --- */
+/* Do NOT constrain the body; widen only the content region on this page */
+.onepager .page__content{ max-width: clamp(960px, 100ch, 1200px); padding-inline: 1.25rem; }
+/* Some MM wrappers add width caps; neutralize for this page */
+.onepager .page__inner-wrap{ max-width: none; }
+.onepager .page{ max-width: none; }
+.onepager #main{ max-width: none; }
+.onepager .lede{ color: var(--ink); opacity: 0.85; font-style: italic; margin-block: 0.25rem 1.25rem; }
+.onepager .onepager__actions{
+  position: sticky; top: 96px; z-index: 10;
+  display: flex; justify-content: flex-end; align-items: center;
+  margin: 0 0 var(--s-sm) 0;
+}
+.onepager hr{ border: 0; height: 2px; background: var(--aqua); border-radius: 999px; margin: 0.5rem 0 1rem; }
+.onepager .callout{ border-left-color: var(--aqua); background: color-mix(in oklab, var(--aqua) 10%, white); }
+.onepager table thead th{ background: var(--brand-primary); color:#fff; border-bottom:3px solid var(--brand-accent); }
+.onepager table tbody tr:hover{ box-shadow: inset 4px 0 0 0 var(--brand-accent); }
+
+/* Heading rhythm */
+.onepager h1, .onepager h2, .onepager h3{ letter-spacing: -0.01em; }
+.onepager h1{ font-size: clamp(2rem, 1.6rem + 2vw, 2.75rem); line-height: 1.15; margin: 0 0 .5rem 0; }
+.onepager h2{
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.75rem);
+  line-height: 1.25;
+  margin-block: 1.5rem .5rem;
+  position: relative;
+  padding-left: 0;
+  border-bottom: none;
+}
+.onepager h2::before{
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 0.4em;
+  width: 4px; height: 1.1em;
+  background: var(--aqua);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(19,17,12,0.04);
+}
+.onepager .section-rule{ height: 2px; background: var(--aqua); margin: .5rem 0 1rem; }
+.onepager h3{ font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.25rem); margin-block: 1rem .25rem; }
+
+/* Body & lists */
+.onepager p{ line-height: 1.55; margin: .35rem 0 .75rem; }
+.onepager ul{ margin: .25rem 0 1rem 1.1rem; }
+.onepager li{ margin: .35rem 0; }
+.onepager li + li{ margin-top: .25rem; }
+
+/* Inline callouts */
+.inline-chip{ display:inline-block; padding:.15rem .5rem; border-radius:999px; font-weight:600; background:#e5e7eb; }
+
+/* CTA physics already defined globally (.cta-push + .cta-button); no overrides needed */
+
+/* Links (limit to content so topnav stays consistent) */
+.onepager .page__content a{ color: var(--ocean); text-decoration-thickness:2px; }
+.onepager .page__content a:hover{ text-decoration-color: var(--aqua); }
+
+/* Subtle section cards */
+.onepager .section{ background:#fff; border:1px solid rgba(19,17,12,0.06); border-radius:12px; padding:.85rem 1rem; margin-block:.75rem 1rem; }
+.onepager .section ul{ list-style: disc; padding-left: 1.2rem; }
+.onepager .section ol{ list-style: decimal; padding-left: 1.2rem; }
+
+@media (max-width: 768px){
+  .onepager .onepager__actions{ position: relative; top: auto; margin: var(--s-sm) 0 var(--s-md); }
+  .onepager .onepager__actions .download-cta{ width:100%; justify-content:center; }
+  .onepager .page__content{ max-width: 100%; padding-inline: 1rem; }
+}
+
+/* ===== Print / PDF ===== */
+@media print{
+  @page{ size: Letter; margin: 0.7in 0.6in 0.8in; }
+  html, body{ background:#fff !important; }
+  .site-header, .site-footer, .nav, .hero, .search, .sticky-cta, .masthead, .page__footer{ display:none !important; }
+  .onepager{ max-width: 100% !important; padding: 0 !important; }
+  .onepager a{ color: var(--ink); text-decoration: underline; }
+  .onepager a[href^="http"]::after{ content: " (" attr(href) ")"; font-weight:400; }
+  h1, h2, h3{ break-after: avoid; }
+  .section, ul, li, p{ break-inside: avoid; }
+  .download-cta, .onepager__actions{ display:none !important; }
+}
+
+/* --- Day One report layout (scope page) --- */
+/* Defaults for layout tuning variables */
+:root{
+  --container-max: 1200px;
+  --container-pad: 28px;
+  --content-max: 960px;
+  --grid-gap: 32px;
+  --sidebar-width: 320px; /* updated by JS to match PDF button */
+  --toc-radius: 12px;
+  --sidebar-pad: 12px;     /* shared inner padding for CTA + TOC */
+}
+
+/* Broaden content and align with header grid */
+.dayone-report #main{ padding-inline: 0; max-width: 100%; margin-inline: 0; }
+.dayone-report{ --content-max: 960px; --layout-width: calc(var(--content-max) + var(--grid-gap) + var(--sidebar-width)); }
+.dayone-report .page__inner-wrap{
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-right: var(--container-pad);
+  padding-left: var(--container-pad);
+}
+.page--power .page__inner-wrap{
+  max-width: 100% !important;
+}
+.dayone-report .page__content{ max-width: var(--content-max); margin-inline: auto; }
+
+/* Title spacing rhythm under fixed header */
+.dayone-report .page__title, .dayone-report .page-title{
+  margin-top: 28px;
+  margin-bottom: 0; /* remove extra gap to content on full width */
+  line-height: 1.05;
+}
+
+/* Sticky actions row (if used) */
+.dayone-report .report__actions{
+  position: sticky; top: 112px; z-index: 9;
+  display:flex; justify-content:flex-end; align-items:center;
+  margin: .25rem 0 .75rem 0;
+}
+
+/* Remove conflicting sticky rules - handled by page-power.css */
+
+/* Two-column behavior using theme structure; sidebar width driven by CSS var */
+/* DISABLE legacy negative-margin 2-col layout; we use an explicit grid later */
+/* @media (min-width: 64em){ ... } removed */
+
+/* Reading measure on wide screens */
+.dayone-report .page__content p{ max-width: 76ch; }
+
+/* Sidebar CTA above TOC */
+.dayone-report .sidebar-actions{ display:block; margin: 0 0 .75rem 0; }
+.dayone-report .sidebar-actions .cta-push{ display:inline-flex; }
+
+/* PDF button inherits exact .cta-button styling; no overrides here */
+
+/* Sidebar TOC polish */
+.dayone-report nav.toc{ width: 100%; border-radius: var(--toc-radius); padding: 0; box-sizing: border-box; }
+.dayone-report nav.toc a{ display: block; padding: 8px 10px; border-radius: 8px; line-height: 1.25; }
+.dayone-report nav.toc a:hover{ text-decoration: none; }
+
+/* Responsive stacking */
+@media (max-width: 63.99em){
+  .dayone-report .pdf-btn{ width: 100%; }
+  .dayone-report .page{ width: 100%; padding-inline-end: 0; }
+  .dayone-report .sidebar__right{ width: 100%; margin-inline-end: 0; padding-inline: var(--sidebar-pad); }
+}
+
+/* Two-line heading subtitles used inside H2s */
+.toc-sub {
+  display: block;
+  font-size: 0.85em;
+  line-height: 1.2;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-top: 0.15em;
+}
+
+/* Allow TOC links to wrap naturally */
+.toc .nav__items a,
+.toc .nav__items .nav__item a {
+  white-space: normal;
+}
+
+/* Minor spacing polish for TOC items */
+.toc .nav__items .nav__item {
+  margin-bottom: 6px;
+}
+
+/* Simple badge for "Coming soon" and similar */
+.pill {
+  display: inline-block;
+  font-size: .75rem;
+  line-height: 1;
+  padding: .35rem .5rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(0,0,0,.08);
+  background: #fff7cc;
+  color: #6a4d00;
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+.pill--soon { background: #fff7cc; border-color: #ffe08a; color: #6a4d00; }
+
+/* Ghost/secondary CTA that matches .cta-button sizing */
+.cta-button--ghost {
+  background: transparent;
+  color: var(--brand-blue, #2b2bdc);
+  border: 2px solid currentColor;
+}
+.cta-button--ghost:hover { background: rgba(43,43,220,.08); }
+
+/* ===== Day One for NYC — neutral civic brand ===== */
+:root{
+  /* Colors */
+  --c-bg:#F9FAFB;
+  --c-surface:#FFFFFF;
+  --c-text:#111827;          /* gray-900 */
+  --c-muted:#6B7280;         /* gray-500 */
+  --c-primary:#1E3A8A;       /* indigo-800 */
+  --c-primary-hover:#1D4ED8; /* blue-700 */
+  --c-accent:#0F766E;        /* teal-700 */
+  --c-accent-hover:#115E59;  /* teal-800 */
+  --c-border:#E5E7EB;        /* gray-200 */
+  --c-focus:#22D3EE;         /* cyan-400 */
+
+  /* Typography */
+  --font-ui: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Source Serif 4", Georgia, serif;
+
+  /* Shape & elevation */
+  --r-8:8px;
+  --r-12:12px;
+  --shadow-sm: 0 1px 2px rgba(17,24,39,.06);
+}
+
+html, body { background: var(--c-bg); color: var(--c-text); }
+body, .topnav, .toc, .btn, input, select, textarea { font-family: var(--font-ui); }
+h1, h2, h3, .hero__title { font-family: var(--font-display); font-weight: 700; color: var(--c-text); }
+
+/* Links */
+a { color: var(--c-primary); text-decoration: none; }
+a:hover { color: var(--c-primary-hover); text-decoration: underline; }
+
+/* Focus visibility */
+:where(a,button,input,select,textarea,[role="button"]):focus {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* Cards */
+.card, .card--section, .page .card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-8);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Hero card (keep current layout, just tone down styling) */
+.hero, .hero--clean {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-12);
+  box-shadow: var(--shadow-sm);
+}
+.hero__subtitle { color: var(--c-muted); }
+
+/* Top navigation */
+.topnav {
+  background: var(--c-primary);
+  box-shadow: none;
+}
+.topnav__link,
+.topnav__link:visited { color: #E5E7EB; opacity: .92; }
+.topnav__link:hover { color: #FFFFFF; opacity: 1; }
+.topnav__cta .cta-button { margin-left: .75rem; }
+
+/* CTA buttons */
+.cta-button, .btn, .button {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem;
+  background: var(--c-accent) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r-8);
+  padding: .625rem 1rem;
+  font-weight: 600;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  box-shadow: none !important; /* remove campaign-like shadows */
+}
+.cta-button:hover, .btn:hover { background: var(--c-accent-hover) !important; color: #fff !important; text-decoration: none; }
+
+/* Ghost & text variants (optional) */
+.btn--ghost {
+  background: transparent; color: var(--c-primary);
+  border: 1px solid var(--c-border);
+}
+.btn--ghost:hover { border-color: var(--c-primary); color: var(--c-primary-hover); }
+
+.btn--text {
+  background: transparent; border: none; color: var(--c-primary);
+}
+.btn--text:hover { color: var(--c-primary-hover); text-decoration: underline; }
+
+/* Tables (appointments, etc.) */
+table { border-collapse: collapse; width: 100%; }
+th, td { border-bottom: 1px solid var(--c-border); padding: .75rem .75rem; }
+thead th { background: #F3F4F6; color: var(--c-text); font-weight: 600; }
+
+/* Appointments table: ensure website column links use global link color */
+
+/* Appointments data table: enforce link color on generated "Open" anchor */
+/* Appointments Website column: force site-standard link color */
+.page--appointments #appt-table td.text-right a.text-link,
+.appointments #appt-table td.text-right a.text-link,
+#appt-table td.text-right a.text-link,
+.page--appointments #appt-table td.text-right a.text-link:link,
+.appointments #appt-table td.text-right a.text-link:link,
+#appt-table td.text-right a.text-link:link,
+.page--appointments #appt-table td.text-right a.text-link:visited,
+.appointments #appt-table td.text-right a.text-link:visited,
+#appt-table td.text-right a.text-link:visited{
+  color: var(--ocean) !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+.page--appointments #appt-table td.text-right a.text-link:hover,
+.appointments #appt-table td.text-right a.text-link:hover,
+#appt-table td.text-right a.text-link:hover,
+.page--appointments #appt-table td.text-right a.text-link:focus,
+.appointments #appt-table td.text-right a.text-link:focus,
+#appt-table td.text-right a.text-link:focus{
+  color: var(--ocean-700) !important;
+}
+
+/* ========= CRITICAL MOBILE NAV FIX - MUST BE LAST TO WIN ========= */
+/* Fix CSS conflicts between header.css and style.css */
+@media (max-width: 860px) {
+  /* Ensure dropdown behavior from header.css is preserved */
+  .topnav__menu {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 100% !important;
+    background: var(--nav-mobile-bg, var(--nav-bg, #0F2742)) !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height .25s ease !important;
+    box-shadow: 0 10px 18px rgba(0,0,0,.12) !important;
+    z-index: 1001 !important;
+  }
+  
+  .topnav__menu.is-open {
+    /* Use dynamic viewport with fallbacks */
+    max-height: calc(100dvh - var(--nav-h-real, var(--nav-h-sm, 56px))) !important;
+    max-height: calc(100svh - var(--nav-h-real, var(--nav-h-sm, 56px))) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: env(safe-area-inset-bottom, 20px) !important;
+  }
+  
+  /* Hide content until opened */
+  .topnav__menu:not(.is-open) .topnav__list,
+  .topnav__menu:not(.is-open) .topnav__cta {
+    display: none !important;
+  }
+  
+  .topnav__list {
+    display: block !important;
+    padding: 10px 16px !important;
+    margin: 0 !important;
+  }
+  
+  .topnav__list li {
+    margin: 8px 0 !important;
+  }
+  
+  .topnav__cta {
+    display: block !important;
+    padding: 8px 16px 16px !important;
+    border-top: 1px solid rgba(255,255,255,.12) !important;
+    margin: 0 !important;
+  }
+  
+  .topnav__cta .cta-button {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* Fix mid-width wrapping (tablet range) */
+@media (min-width: 861px) and (max-width: 1200px) {
+  #topnav.topnav {
+    height: auto !important;
+    min-height: var(--nav-h, 72px) !important;
+  }
+  
+  .topnav__inner {
+    flex-wrap: wrap !important;
+    padding-bottom: 12px !important;
+  }
+  
+  .topnav__list {
+    flex-wrap: wrap !important;
+    row-gap: 8px !important;
+  }
+}
+
+/* Ensure no ancestor has overflow:hidden that clips dropdown */
+body, html, main, .page, .page__inner-wrap {
+  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-y: visible !important; /* allow dropdown to show */
+}
+
+.topnav {
+  overflow: visible !important;
+}
+
+/* TOC/sidebar readability */
+.sidebar__right a { color: var(--c-primary); }
+.sidebar__right a:hover { color: var(--c-primary-hover); }
+
+/* Footer (keep neutral) */
+.donyc-footer { background: var(--c-primary); color: #E5E7EB; border-radius: var(--r-12); }
+.donyc-footer a { color: #E5E7EB; }
+.donyc-footer a:hover { color: #FFFFFF; text-decoration: underline; }
+.donyc-footer__copyright strong { color: #FFFFFF; }
+
+/* Neutralize campaign-specific styles that carry higher specificity earlier */
+
+/* Content link colors (override earlier .page__content a rules) */
+.page__content a { color: var(--c-primary); text-decoration: none; font-weight: 600; }
+.page__content a:hover { color: var(--c-primary-hover); text-decoration: underline; }
+
+/* Top nav link tone and casing */
+.topnav__link { text-transform: none; letter-spacing: 0; font-weight: 600; }
+
+/* Remove CTA red underlay "push" effect */
+.cta-push::before { content: none; }
+
+/* Button variants: unify to neutral accent and remove shadows/uppercase */
+.btn--primary, .btn--secondary, .btn--accent, .btn--outline {
+  background: var(--c-accent) !important;
+  color: #fff !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+.btn--primary:hover, .btn--secondary:hover, .btn--accent:hover, .btn--outline:hover {
+  background: var(--c-accent-hover) !important;
+  color: #fff !important;
+}
+
+/* Remove tag/badge red shadows */
+.badge, .tag { box-shadow: none; border: 1px solid var(--c-border); background: #F3F4F6; color: var(--c-text); }
+
+/* Headings: remove decorative bars/underlines */
+h2, h3 { padding-left: 0; border: 0; text-transform: none; }
+h2::before, h3::before { content: none; }
+
+/* Remove card section top accent bar */
+.card--section::before { content: ""; }
+
+/* Hero buttons neutral */
+.hero--clean .btn--primary,
+.hero--clean .btn--accent {
+  background: var(--c-accent);
+  color: #fff;
+  border: none;
+  box-shadow: none;
+}
+
+/* CTA button specifics */
+.cta-button { font-family: var(--font-ui); text-transform: none; letter-spacing: 0; }
+.cta-button:focus { outline: 3px solid var(--c-focus); outline-offset: 2px; }
+
+/* Ensure --white utility does not force stark white in neutral theme */
+.topnav__link--white { color: #E5E7EB !important; }
+.topnav__link--white:hover { color: #FFFFFF !important; }
+
+/* Force header color to neutral primary */
+.topnav { background: var(--c-primary) !important; box-shadow: none !important; }
+
+/* Tables: remove orange borders and hovering */
+thead th { border-bottom: 1px solid var(--c-border) !important; background: #F3F4F6 !important; color: var(--c-text) !important; }
+tbody tr:hover { background: rgba(30,58,138,.05) !important; box-shadow: inset 4px 0 0 0 var(--c-primary) !important; }
+
+/* Accent lines for headings using neutral palette */
+h2 { position: relative; padding-left: .75rem; border: 0; }
+h2::before { content: ""; position: absolute; left: 0; top: .2em; bottom: .2em; width: 4px; border-radius: 999px; background: var(--c-primary); }
+h3 { position: relative; padding-left: .6rem; }
+h3::before { content: ""; position: absolute; left: 0; top: .3em; bottom: .3em; width: 3px; border-radius: 999px; background: var(--c-primary); }
+
+/* ===== Civic tokens per recommendation (scoped last to win) ===== */
+:root {
+  /* Core */
+  --nav-bg: #0F2742;             /* header bar */
+  --nav-link: #FFFFFF;           /* default link in header */
+  --nav-link-muted: #E5E7EB;     /* optional, for less emphasis */
+  --nav-link-hover: #FFFFFF;     /* keep white, add underline or weight */
+  --nav-underline: #1D4ED8;      /* active/hover underline */
+
+  --card-accent: var(--aqua);        /* thin top border on cards */
+  --card-border: #E5E7EB;        /* subtle outer border */
+  --text: #111827;               /* body text */
+  --text-muted: #6B7280;         /* secondary text */
+}
+
+/* Header */
+.topnav { background: var(--nav-bg) !important; }
+.topnav__link { color: var(--nav-link) !important; }
+.topnav__link:hover,
+.topnav__link[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--nav-underline);
+  text-underline-offset: 4px;
+}
+
+/* Card section accent */
+.card--section {
+  border: 1px solid var(--card-border) !important;
+  border-top: 4px solid var(--card-accent) !important;
+  background: #FFF !important;
+  color: var(--text) !important;
+}
+
+/* Small chips/pills that used to be orange */
+.pill,
+.badge,
+.tag {
+  background: color-mix(in oklab, var(--card-accent) 15%, white) !important;
+  color: var(--card-accent) !important;
+  border: 1px solid var(--card-accent) !important;
+}
+
+/* Normalize legacy brand CSS variables used in header.css to civic palette */
+:root {
+  --blue-zo: #1E3A8A;   /* map to nav background */
+  --orange-zo: #0F766E; /* map to civic accent, prevents orange hover */
+  --red-zo: #0F766E;    /* neutralize any red-based shadows */
+}
+
+/* Ensure topnav hover/active stays white with underline only */
+.topnav__link:hover,
+.topnav__link.is-active,
+.topnav__link--white:hover {
+  color: var(--nav-link-hover, #FFFFFF) !important;
+  text-decoration: underline !important;
+  text-decoration-color: var(--nav-underline, #1D4ED8) !important;
+  text-underline-offset: 4px !important;
+}
+
+/* One-pager orange cleanup */
+.onepager hr,
+.onepager .section-rule { background: var(--card-accent) !important; box-shadow: none !important; }
+.onepager .page__content a:hover { text-decoration-color: var(--nav-underline) !important; }
+
+/* Callout accent neutral */
+.callout { border-left-color: var(--card-accent) !important; background: color-mix(in oklab, var(--card-accent) 8%, white) !important; }
+
+/* Tier pill neutral */
+.tier-pill { color: var(--c-primary) !important; border-color: var(--c-primary) !important; box-shadow: none !important; }
+.tier-pill[data-tier="B"] { color: var(--c-primary) !important; border-color: var(--c-primary) !important; }
+
+/* Header hardening: ensure every related element uses the civic nav color */
+.masthead,
+.site-header,
+.topnav,
+.topnav__menu { background: var(--nav-bg) !important; }
+/* Keep link colors accessible */
+.topnav__link:link,
+.topnav__link:visited { color: var(--nav-link) !important; }
+
+/* Ultimate header override: target the actual element id and class */
+header#topnav.topnav {
+  background: var(--navy, #16324F) !important;
+  background-color: var(--navy, #16324F) !important;
+}
+
+/* === Day One for NYC – Brand layer ===================================== */
+:root{
+  /* Palette */
+  --ink: #0F1B2A;               /* main text */
+  --navy: #16324F;              /* header/nav background */
+  --aqua: #22D3A9;              /* primary accent (your logo fill) */
+  --aqua-600: #12d9e9;
+  --aqua-700: #0fbfd0;
+  --aqua-50:  var(--accent-soft);
+  --bg:   #F6F8FB;              /* page background */
+  --card: #FFFFFF;              /* card background */
+  --line: #E6EEF6;              /* card borders/dividers */
+
+  /* Semantics */
+  --link: var(--aqua-700);
+  --link-hover: var(--aqua);
+  --btn-bg: var(--aqua);
+  --btn-fg: #0B2530;
+  --btn-bg-hover: var(--aqua-600);
+
+  /* Map legacy header tokens to new palette so header.css honors navy */
+  --blue-zo: var(--navy);
+  --orange-zo: var(--aqua);
+  --red-zo: var(--aqua);
+}
+
+/* Global clean-up */
+body{ background: var(--bg); color: var(--ink); }
+a{ color: var(--link); }
+a:hover, a:focus{ color: var(--link-hover); text-decoration: underline; }
+
+/* Headings (remove the leftover purple) */
+h1,h2,h3,h4{ color: var(--ink); }
+.page__title, .archive__subtitle{ color: var(--ink); }
+
+/* Top nav */
+.topnav{ background: var(--navy); }
+.topnav__link{ color:#E8EEF6; opacity:.9; }
+.topnav__link:hover,
+.topnav__link:focus{ color:#FFFFFF; opacity:1; }
+.topnav__link.is-active{ 
+  color:#FFFFFF;
+  box-shadow: inset 0 -3px 0 0 var(--aqua); /* underline active item */
+}
+
+/* CTA button (header + hero + anywhere .cta-button is used) */
+.cta-button{
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 6px 0 rgba(0,0,0,.07);
+}
+.cta-button:hover,
+.cta-button:focus{ background: var(--btn-bg-hover); color: var(--btn-fg); }
+
+/* Hero accent rule (replace old orange) */
+.hero__rule{ background: var(--aqua); }
+
+/* Cards */
+.card{ background: var(--card); border:1px solid var(--line); }
+.card--section{ border-radius: 16px; }
+.card--section .section-title,
+.card--section h3{ color: var(--ink); }
+
+/* “accent bar” on section cards (thin line at top) */
+.card--section::before{
+  content:"";
+  display:block;
+  height:4px;
+  background: var(--aqua);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Tag pills (Levers filters + right-side badges) */
+.badge, .pill, .tag,
+.lever-tags .btn, .lever-tag,
+.mm-tag, .label, .toc .tag,
+button.tag, .btn.tag{
+  border:1.5px solid var(--aqua);
+  background: transparent;
+  color: var(--navy);
+  border-radius: 999px;
+}
+.badge:hover, .pill:hover, .tag:hover,
+.lever-tag:hover{
+  background: var(--aqua-50);
+  color: var(--navy);
+}
+
+/* Levers list item header “chips” on the right */
+.card .label--right,
+.card .category-pill{
+  border:1.5px solid var(--aqua);
+  color: var(--navy);
+  background: transparent;
+}
+
+/* Right sidebar “Download as PDF” button match */
+.pdf-btn,
+.sidebar__right .btn--primary{
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border:0;
+  border-radius:999px;
+}
+.pdf-btn:hover{ background: var(--btn-bg-hover); }
+
+/* TOC panel title row */
+.toc .nav__title{ background: var(--navy); color:#fff; }
+
+/* Focus styles (keyboard) */
+a:focus, button:focus, [role="button"]:focus{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Logo sizing in header (keeps brand crisp) */
+.topnav__logo{ height: 28px; width:auto; }
+
+/* Optional: remove shadow banding from hero card */
+.hero.hero--clean{ box-shadow: none; border:1px solid var(--line); }
+
+/* ===== Neutral civic visual system (non-campaign) ===== */
+:root{
+  /* Brand palette */
+  --ink: #0F2742;           /* Primary text + header/nav background */
+  --ocean: #0F927B;         /* Primary action (buttons, highlights) */
+  --aqua: #22D3A9;          /* Accent for rules, chips, focus, tags */
+  --mint: #1FC0B5;          /* Secondary accent (rare, sparing) */
+  --paper: #FFFFFF;         /* Cards */
+  --cloud: #F7FAFC;         /* Page background */
+  --line: #E7EEF5;          /* Subtle dividers */
+  --muted: #5B728B;         /* Secondary text */
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+
+  --shadow-1: 0 1px 2px rgba(15,39,66,.05), 0 6px 18px rgba(15,39,66,.08);
+  --shadow-2: 0 2px 6px rgba(15,39,66,.08), 0 12px 28px rgba(15,39,66,.12);
+
+  --gap-xs: .5rem;
+  --gap-sm: .75rem;
+  --gap-md: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-xl: 2rem;
+}
+
+html, body{
+  background: var(--cloud);
+  color: var(--ink);
+}
+
+a{
+  color: var(--ocean);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+a:hover{ color: var(--ocean-700); }
+a:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1, h2, h3{
+  color: var(--ink);
+  letter-spacing: .2px;
+}
+
+/* “kicker” rule used on section cards (the thin top bar) */
+.card--section{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: var(--gap-xl);
+  position: relative;
+}
+.card--section::before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 4px;
+  background: var(--aqua);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+/* Header/Topnav clean-up (consistent spacing, active state, and matching CTA) */
+.topnav{
+  background: var(--ink);
+}
+.topnav__link{
+  color: rgba(255,255,255,.85);
+}
+.topnav__link:hover,
+.topnav__link[aria-current="page"],
+.topnav__link--active{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+.topnav__cta .cta-button{
+  background: var(--ocean);
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: .6rem 1.1rem;
+  box-shadow: 0 6px 0 rgba(0,0,0,.08);
+}
+.topnav__cta .cta-button:hover{ background: var(--ocean-700); }
+.topnav__cta .cta-button:focus-visible{
+  outline: 3px solid var(--aqua);
+  outline-offset: 3px;
+}
+
+/* Hero card + main CTA harmony (use the same CTA style everywhere) */
+.hero{
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+}
+.hero .cta-button{
+  background: var(--ocean);
+  color:#fff;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  padding: .75rem 1.2rem;
+}
+.hero .cta-button:hover{ background: var(--ocean-700); }
+.hero .cta-button:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; }
+
+/* Align the little colored rule in the hero with the site accent */
+.hero .hero__rule{ background: var(--aqua); height: 6px; }
+
+/* Section cards on the homepage and the Scope page */
+.section{ padding-top: .75rem; }
+.section .card--section + .card--section{ margin-top: var(--gap-xl); }
+
+/* Tighten list spacing inside “What we cover/Why this matters” */
+.card--section ul{ margin:.75rem 0 0; }
+.card--section li{ margin:.35rem 0; }
+
+/* Levers Navigator list + chips */
+/* Card rows */
+.levers-list .card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+.levers-list .card::before{
+  content:"";
+  position:absolute; left:0; right:0; top:0;
+  height:4px; background:var(--aqua);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+.levers-list .card h3{ margin-top: .25rem; }
+
+/* Filter input */
+#filter{
+  border:1px solid var(--line);
+  border-radius: var(--radius-md);
+  background:#fff;
+}
+#filter:focus{
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 3px var(--focus);
+  outline: none;
+}
+
+/* Chips / tags */
+.tag, .chip, .badge{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.35rem .65rem;
+  border:2px solid var(--aqua);
+  color: var(--ocean);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-weight: 600;
+  line-height:1;
+}
+.tag:hover, .chip:hover, .badge:hover{
+  background: var(--aqua);
+  color: var(--accent-ink);
+}
+
+/* TOC/sidebar (make it feel like the cards + collapsible affordance later) */
+.sidebar__right{
+  background: var(--paper);
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  overflow: visible !important; /* Ensure no clipping of sticky content */
+}
+.toc__title{
+  background: var(--ink);
+  color:#fff;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+.toc a{ color: var(--ocean); }
+.toc a:hover{ text-decoration: underline; }
+
+/* Buttons (global, so “Download the PDF” in hero and header match) */
+.cta-button{
+  background: var(--ocean);
+  color:#fff;
+  border-radius: 999px;
+  border:2px solid transparent;
+  padding:.7rem 1.1rem;
+  transition: transform .06s ease, background .15s ease;
+}
+.cta-button:hover{ background: var(--ocean-700); transform: translateY(-1px); }
+.cta-button:active{ transform: translateY(0); }
+.cta-button--ghost{
+  background: transparent;
+  border-color: var(--ocean);
+  color: var(--ocean);
+}
+.cta-button--ghost:hover{
+  background: var(--accent-soft);
+}
+
+/* Small polish */
+/* Improve link underlines in running text */
+.page__content p a{
+  text-decoration-color: rgba(34,211,169,.6);
+}
+
+/* Tables (Appointments etc.) */
+table{
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  background: var(--paper);
+  border:1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+thead th{
+  background: #F0F7FD;
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+}
+tbody tr + tr td{ border-top:1px solid var(--line); }
+
+/* Footer to match header tone, with gentle contrast */
+.donyc-footer{
+  background: var(--ink);
+  color: rgba(255,255,255,.85);
+}
+.donyc-footer a{ color: #D9F7FF; }
+.donyc-footer a:hover{ color:#fff; }
+
+/* ===== HeaderNav polish (size, logo, spacing, container, active state) ===== */
+/* Container width used by header + footer (keeps them aligned with content) */
+:root{
+  --container-w: 1200px;          /* adjust to your page width */
+  --nav-h: 64px;                  /* desktop header height */
+  --nav-h-sm: 56px;               /* mobile header height */
+}
+
+/* Header shell */
+.topnav{
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--ink);                   /* defined earlier */
+  height: var(--nav-h);
+  box-shadow: none;                         /* gets added on scroll via .is-scrolled (optional JS) */
+}
+
+/* Inner container aligned to site width */
+.topnav__inner{
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+/* Brand + logo sizing */
+.topnav__brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  min-width: 140px;
+}
+.topnav__brand .topnav__logo{
+  height: 32px;           /* primary control: make logo bigger/smaller here */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Nav list + CTA spacing */
+.topnav__menu{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1 1 auto;
+  justify-content: space-between;
+}
+.topnav__list{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+}
+
+/* Ensure mobile dropdown overrides any grid/contents layout */
+@media (max-width: 860px){
+  .topnav__inner{ display: flex !important; }
+  .topnav__menu{ 
+    display: block !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: var(--nav-mobile-bg, var(--nav-bg, var(--blue-zo))) !important;
+  }
+  .topnav__list{ display: block !important; }
+  .topnav__cta{ display: block !important; }
+}
+
+/* Allow wrapping to a second row on narrower viewports */
+@media (min-width: 861px) and (max-width: 1200px){
+  .topnav__list{ flex-wrap: wrap; row-gap: 6px; column-gap: 18px; justify-content: center; }
+}
+
+/* When wrapping, increase header height to avoid overlap */
+@media (min-width: 861px) and (max-width: 1200px){
+  #topnav.topnav{ height: auto !important; min-height: var(--nav-h); padding-bottom: 12px; }
+  .topnav__inner{ padding-bottom: 10px; }
+}
+
+/* Link states in header */
+.topnav__link{
+  color: rgba(255,255,255,.88);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.topnav__link:hover,
+.topnav__link[aria-current="page"],
+.topnav__link--active{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* Header CTA consistency */
+.topnav__cta .cta-button{
+  background: var(--ocean);
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: .6rem 1.1rem;
+}
+.topnav__cta .cta-button:hover{ background: var(--ocean-700); }
+
+/* Compact on small screens */
+@media (max-width: 768px){
+  .topnav{ height: var(--nav-h-sm); }
+  .topnav__brand .topnav__logo{ height: 28px; }
+  .topnav__list{ gap: 14px; }
+}
+
+/* ===== Footer layout (grid, alignment, contrast, icons) ===== */
+/* Footer frame */
+.donyc-footer{
+  background: var(--ink);
+  color: rgba(255,255,255,.9);
+}
+
+/* ========= Brand palette (non-campaign) ========= */
+:root{
+  /* Base/nav */
+  --ink: #0F2742;         /* midnight navy for header/footer backgrounds */
+  /* CTA */
+  --ocean: #0F927B;       /* bright ocean blue (primary CTA) */
+  /* Accent */
+  --aqua: #22D3A9;        /* aqua accent (borders/pills) */
+
+  /* Container + header sizing */
+  --container-w: min(1200px, calc(100% - 32px));
+  --nav-h: 72px;          /* desktop nav height */
+  --nav-h-sm: 56px;       /* mobile nav height */
+}
+
+/* ========= HEADER ========= */
+#topnav.topnav{
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--ink) !important;
+  min-height: var(--nav-h);
+  box-shadow: none; /* shadow added by JS on scroll if present */
+}
+
+.topnav__inner{
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+/* Bigger, crisper logo */
+.topnav__brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+.topnav__brand .topnav__logo{
+  height: 40px !important;  /* increase logo size */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Menu + CTA */
+.topnav__menu{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1 1 auto;
+  justify-content: space-between;
+}
+.topnav__list{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+}
+
+.topnav__link{
+  color: rgba(255,255,255,.9);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.topnav__link:hover,
+.topnav__link[aria-current="page"],
+.topnav__link--active{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+.topnav__cta .cta-button{
+  background: var(--ocean);
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: .65rem 1.1rem;
+}
+.topnav__cta .cta-button:hover{ background: var(--ocean-700); }
+
+/* Compact header on small screens */
+@media (max-width: 768px){
+  #topnav.topnav{ min-height: var(--nav-h-sm); }
+  .topnav__brand .topnav__logo{ height: 30px !important; }
+  .topnav__list{ gap: 14px; }
+}
+
+/* ========= FOOTER ========= */
+/* The theme wraps your custom footer with .page__footer. 
+   Force it to your brand and hide the theme's default blocks. */
+.page__footer{
+  background: var(--ink) !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.page__footer-follow,
+.page__footer-copyright{
+  display: none !important;
+}
+
+/* Your custom footer container */
+.donyc-footer{
+  background: var(--ink) !important;
+  color: rgba(255,255,255,.92);
+}
+.donyc-footer__inner{
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 2.25rem 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr auto; /* left copy | nav | social */
+  gap: 2rem;
+  align-items: start;
+}
+
+.donyc-footer__copyright{
+  font-size: .95rem;
+  line-height: 1.6;
+}
+.donyc-footer__copyright b,
+.donyc-footer__copyright strong{
+  color: #fff;
+}
+
+/* Footer nav */
+.donyc-footer__nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, auto));
+  gap: .4rem 1rem;
+}
+.donyc-footer__nav a{
+  color: #D9F7FF;
+  font-weight: 600;
+}
+.donyc-footer__nav a:hover{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Footer social */
+.donyc-footer__social{
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+.donyc-footer__social .social{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 2px solid #D9F7FF;
+  color: #D9F7FF;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.donyc-footer__social .social:hover{
+  background: #D9F7FF;
+  color: var(--ink);
+  border-color: #D9F7FF;
+}
+
+/* Stack footer nicely on small screens */
+@media (max-width: 900px){
+  .donyc-footer__inner{
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .donyc-footer__social{
+    justify-content: flex-start;
+  }
+}
+
+/* ========= Accent line on cards: swap old orange for aqua ========= */
+.card.card--section{
+  border-top: 4px solid var(--aqua);
+}
+
+/* ========= Logo sizing tokens ========= */
+:root{
+  --logo-h-desktop: 40px;
+  --logo-h-mobile: 30px;
+  --hero-logo-max: 520px;    /* cap for hero wordmark width */
+}
+
+/* Header logo sizing */
+.topnav__brand .topnav__logo{
+  height: var(--logo-h-desktop);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 768px){
+  .topnav__brand .topnav__logo{ height: var(--logo-h-mobile); }
+}
+
+/* Hero brand bar: ensures white wordmark reads on light pages */
+.hero--brandbar{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  padding-top: 1.5rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+}
+.hero--brandbar .hero__logo-wrap{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);          /* dark brand tone behind white wordmark */
+  padding: 10px 14px;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 14px rgba(0,0,0,.12);
+  margin: 0 auto;
+}
+.hero--brandbar .hero__logo{
+  display: block;
+  width: min(90%, var(--hero-logo-max));
+  height: auto;
+}
+
+/* Keep the thin accent rule aligned with site accent */
+.hero--brandbar .hero__rule{
+  background: var(--aqua);
+  height: 6px;
+  border-radius: 4px;
+  width: clamp(140px, 28%, 240px);
+  margin: .5rem auto .85rem;
+}
+
+/* Center the CTA row within the hero */
+.hero--brandbar .btnrow{ justify-content: center; }
+
+/* ===== Home hero as full dark brand card with white text ===== */
+.hero--brandbar{
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: #fff;
+}
+.hero--brandbar .hero__title,
+.hero--brandbar .hero__subtitle{
+  color: #fff;
+}
+.hero--brandbar .hero__subtitle{ color: rgba(255,255,255,.92); }
+.hero--brandbar .hero__logo-wrap{
+  background: transparent; /* remove inner dark tile since whole card is dark */
+  padding: 0;
+  box-shadow: none;
+}
+
+.topnav,
+header#topnav.topnav,
+.site-header,
+.masthead{ background: var(--ink) !important; }
+
+/* Remove the inner lighter blue strip behind nav items on desktop */
+@media (min-width: 861px){
+  .topnav__menu{ background: transparent !important; box-shadow: none !important; }
+  .topnav__inner{ background: transparent !important; }
+}
+
+/* Align to same container width as header/content */
+.donyc-footer__inner{
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 2.25rem 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr auto;  /* left copy | nav | social */
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Left/copyright block */
+.donyc-footer__copyright{
+  font-size: .95rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,.9);
+}
+.donyc-footer__copyright b,
+.donyc-footer__copyright strong{
+  color: #fff;
+}
+
+/* Center nav block */
+.donyc-footer__nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, auto));
+  gap: .35rem 1rem;
+}
+.donyc-footer__nav a{
+  color: #D9F7FF;
+  font-weight: 600;
+}
+.donyc-footer__nav a:hover{
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Right social block */
+.donyc-footer__social{
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+.donyc-footer__social .social{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 2px solid #D9F7FF;
+  color: #D9F7FF;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.donyc-footer__social .social:hover{
+  background: #D9F7FF;
+  color: var(--ink);
+  border-color: #D9F7FF;
+}
+
+/* Stack nicely on small screens */
+@media (max-width: 900px){
+  .donyc-footer__inner{
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .donyc-footer__social{
+    justify-content: flex-start;
+  }
+}
+
+/* ===== Appointments page: force chip parity + sticky header reliability (last to win) ===== */
+.appointments .appt-filters button,
+.appointments .appt-filters a,
+.appointments #typePills button,
+.appointments #typePills .tag,
+.appointments #typePills .tag--pill{
+  all: unset !important;
+  display: inline-flex !important; align-items: center !important;
+  padding: .35rem .65rem !important;
+  border: 2px solid var(--aqua) !important;
+  background: var(--accent-soft) !important; color: var(--ocean) !important;
+  border-radius: 999px !important; font-weight: 600 !important; line-height: 1 !important;
+  cursor: pointer !important; margin-right: .5rem !important; margin-top: .5rem !important;
+}
+.appointments #typePills .tag--active,
+.appointments .appt-filters .is-active,
+.appointments .appt-filters [aria-pressed="true"]{
+  background: var(--aqua) !important; color: var(--accent-ink) !important; border-color: var(--aqua) !important;
+}
+.appointments .appt-filters button:hover,
+.appointments .appt-filters a:hover,
+.appointments #typePills button:hover{ background: var(--aqua) !important; color: var(--accent-ink) !important; }
+
+.appointments .table--sticky thead th{
+  position: sticky !important; top: 0 !important; z-index: 9 !important;
+  background: #F0F7FD !important; border-bottom: 1px solid var(--line) !important;
+}
+
+/* === Remove left accent line before subheaders inside cards === */
+.card h2::before,
+.card h3::before,
+.card--section h2::before,
+.card--section h3::before { content: none !important; }
+.card h2,
+.card h3,
+.card--section h2,
+.card--section h3 { padding-left: 0 !important; }
+
+/* ========= UNIFIED TOC STICKY BEHAVIOR - MUST BE LAST ========= */
+/* Ensure page-power pages get proper sticky TOC behavior */
+/* Desktop: sticky sidebar */
+@media (min-width: 1201px) {
+  .page--power .sidebar__right {
+    position: sticky !important;
+    top: var(--sticky-top, 80px) !important;
+    z-index: 50 !important;
+  }
+}
+
+/* Mobile: only toggle is sticky, sidebar is static */
+@media (max-width: 1200px) {
+  .page--power .sidebar__right {
+    position: static !important;
+    top: auto !important;
+  }
+  
+  .page--power nav.toc .toc-mobile-toggle {
+    position: sticky !important;
+    top: var(--sticky-top, 64px) !important;
+    z-index: 70 !important;
+  }
+}
+
+/* Ensure no overflow issues block sticky behavior */
+.page--power main,
+.page--power .page,
+.page--power .page__inner-wrap,
+.page--power .page__content {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+/* ===== Desktop full-width layout: use grid to prevent overlap ===== */
+@media (min-width: 1201px){
+  /* Switch content area to a 2-column grid: content | sidebar */
+  .dayone-report .page__content{
+    display: grid !important;
+    /* Center content + sidebar pair */
+    --pair-max: calc(var(--content-max) + var(--sidebar-width) + var(--grid-gap));
+    max-width: min(var(--container-max), var(--pair-max));
+    margin-inline: auto;
+    grid-template-columns: var(--content-max) var(--sidebar-width);
+    column-gap: var(--grid-gap);
+    align-items: start;
+  }
+  /* Prevent overflow-induced jiggle while scrolling */
+  .dayone-report .page__content > :not(.sidebar__right){ min-width: 0; }
+  /* Sidebar sits in column 2 */
+  .dayone-report .page__content > .sidebar__right{
+    grid-column: 2;
+    margin: 0 !important;
+    padding-inline: 0 !important;
+  }
+  /* Start first content block aligned with sidebar top */
+  .dayone-report .page__content > .sidebar__right + *{ grid-row: 1; }
+  .dayone-report .sidebar__right{ margin-top: 0 !important; }
+  /* All non-sidebar children stay in column 1 */
+  .dayone-report .page__content > :not(.sidebar__right){ grid-column: 1; }
+  /* Neutralize earlier width/margin hacks for this breakpoint */
+  .dayone-report .page{ width: 100% !important; padding-inline-end: 0 !important; }
+}
+
+/* On the simplified page-power layout, force single centered column even on desktop */
+.page--power .page__content{
+  display: block !important;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  float: none !important;
+  width: auto !important;
+}
+
+/* Tighten intro spacing on report pages */
+.dayone-report .page__content > .card--section:first-child{ margin-bottom: .5rem !important; }
+.dayone-report .page__content > p:first-of-type{ margin-bottom: .65rem; }
+.dayone-report .page__content > h2:first-of-type{ margin-top: .6rem; }
+.dayone-report .page__content p + h2{ margin-top: .75rem; }
+/* Intro → At-a-glance spacing */
+.dayone-report .page__content > p + blockquote{ margin-top: .5rem; }
+.dayone-report .page__content blockquote{ margin-top: .5rem; margin-bottom: .75rem; }
+
+/* ===== When ToC is moved to the top (single-column), center content ===== */
+.page--power .page__content{
+  display: block !important;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ===== Home page header reveal behavior ===== */
+/* Ensure home uses fixed/animated header controlled by topnav.js */
+body.is-home #topnav.topnav{
+  position: fixed !important;
+  top: -80px !important; /* hidden until scrolled */
+  left: 0; right: 0;
+  z-index: 1000; /* above content */
+}
+body.is-home #topnav.topnav.topnav--visible{
+  top: 0 !important;
+  opacity: 1 !important;
+}

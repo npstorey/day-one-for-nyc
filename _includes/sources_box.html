@@ -1,0 +1,10 @@
+<div class="sources">
+  <strong>Sources</strong>
+  <ul>
+  {% for s in page.sources %}
+    <li><a href="{{ s.url | default: s }}">{{ s.title | default: s }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+
+

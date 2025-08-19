@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* Footer styles for Day One for NYC */
+:root{
+  --footer-bg: var(--ink); /* unify to dark brand blue */
+  --footer-text: #ffffff;
+  --footer-link: #D9F7FF;
+  --footer-link-hover: #ffffff;
+}
+
+.page__footer{ background: var(--footer-bg) !important; padding: 0 !important; margin-top: 0 !important; border: 0 !important; box-shadow: none !important; }
+.page__footer > footer{ background: var(--footer-bg) !important; padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+
+.donyc-footer{ background: var(--footer-bg); color: var(--footer-text); padding-block: 1.5rem; margin: 0; }
+.donyc-footer a{ color: var(--footer-link); text-decoration: none; }
+.donyc-footer a:hover{ color: var(--footer-link-hover); text-decoration: underline; }
+
+.donyc-footer__inner{
+  max-width: var(--container-w, 1200px);
+  margin-inline: auto;
+  padding-inline: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.donyc-footer__col{ flex: 1 1 0; min-width: 0; }
+.donyc-footer__col--left{ display:flex; align-items:flex-start; }
+
+.donyc-footer__copyright{ font-size: .9rem; line-height: 1.4; }
+.donyc-footer__copyright strong{ font-weight: 800; color: #fff; }
+
+.donyc-footer__nav{ list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .75rem 1rem; justify-content:center; }
+.donyc-footer__nav li{ display: inline-flex; }
+.donyc-footer__nav a{ font-size: .9rem; font-weight: 600; }
+
+.donyc-footer__social{ list-style: none; padding: 0; margin: 0; display: flex; gap: .75rem; justify-content: flex-end; }
+.donyc-footer__social .social{ display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; color: #fff; background: transparent; }
+.donyc-footer__social .social svg,
+.donyc-footer__social .social svg path,
+.donyc-footer__social .social svg *{
+  color:#fff !important;
+  fill:#fff !important;
+  stroke:#fff !important;
+  opacity: 1 !important;
+}
+.donyc-footer__social .social:hover{ background: rgba(255,255,255,0.12); color: var(--footer-link-hover); text-decoration: none; }
+
+/* specific brand hints for icons */
+.social--x{ color:#fff; }
+.social--linkedin{ color:#fff; }
+.social--email{ color:#fff; }
+
+/* Responsive stacking */
+@media (max-width: 768px){
+  .donyc-footer__inner{ flex-direction: column; align-items: stretch; }
+  .donyc-footer__nav{ flex-direction: column; align-items: flex-start; gap: .4rem; }
+  .donyc-footer__social{ justify-content: flex-start; }
+}
+
+/* Hide Minimal Mistakes default footer bits */
+.page__footer .page__footer-follow,
+.page__footer .page__footer-copyright{
+  display: none !important;
+}
+
+

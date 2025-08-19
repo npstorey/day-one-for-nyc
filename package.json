@@ -1,0 +1,9 @@
+{
+  "name": "day-one-nyc",
+  "private": true,
+  "scripts": {
+    "brand:check": "bash scripts/brand_guard.sh"
+  }
+}
+
+

@@ -1,0 +1,16 @@
+# Stores anchor events and timelines for Budget, CAPA, ULURP
+
+budget:
+  anchors:
+    - { name: "Preliminary Budget", when: "January", cite: "IBO/Council explainer", url: "" }
+    - { name: "Executive Budget",   when: "April",   cite: "IBO/Council explainer", url: "" }
+    - { name: "Adopted Budget",     when: "June",    cite: "IBO/Council explainer", url: "" }
+capa:
+  anchors:
+    - { name: "Notice → Hearing", min_days: 30 }
+    - { name: "Notice → Adoption", typical_days: "75–90" }
+ulurp:
+  anchors:
+    - { name: "Certification → full review window", months: 7 }
+
+

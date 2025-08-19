@@ -1,0 +1,47 @@
+---
+layout: single
+---
+{% comment %} Basic appointment page pulling matching CSV row by title/body {% endcomment %}
+{% assign body = page.body_name | default: page.title %}
+<article class="appointment">
+  <header>
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  {% capture key %}{{ page.body_name }}|{{ page.seat_title }}{% endcapture %}
+  {% assign row = nil %}
+  {% for a in site.data.appointments %}
+    {% capture akey %}{{ a.body_name }}|{{ a.seat_title }}{% endcapture %}
+    {% if akey == key %}
+      {% assign row = a %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if row %}
+  <h1>{{ row.seat_title }} — {{ row.body_name }}</h1>
+
+  <p>
+    <span class="tier-pill" data-tier="{{ row.priority_tier }}">Tier {{ row.priority_tier }}</span>
+  </p>
+
+  <ul>
+    <li><strong>Appointing Authority:</strong> {{ row.appointing_authority }}</li>
+    <li><strong>Advice & Consent:</strong> {{ row.advice_and_consent }}</li>
+    <li><strong>Term:</strong> {{ row.term_length_years }} years; Holdover: {{ row.holdover_allowed }}</li>
+    <li><strong>Quorum:</strong> {{ row.quorum | default: "—" }}</li>
+    <li><strong>Mayoral Share:</strong> {{ row.mayoral_share_pct }}%</li>
+    <li><strong>Priority:</strong> {{ row.priority_tier }} ({{ row.priority_score }})</li>
+    <li><strong>Statute:</strong> {{ row.statutory_cite }}</li>
+  </ul>
+
+  {% if row.notes %}<p>{{ row.notes }}</p>{% endif %}
+
+  {% assign page = row %}
+  {% include sources_box.html %}
+  {% else %}
+  <p><em>Appointment data not found in `_data/appointments.csv`.</em></p>
+  {% endif %}
+</article>
+
+

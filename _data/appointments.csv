@@ -1,0 +1,25 @@
+body_name,seat_title,appointing_authority,advice_and_consent,term_length_years,term_end,holdover_allowed,quorum,mayoral_share_pct,priority_score,priority_tier,statutory_cite,source_url,notes
+Office of Management and Budget,Director,Mayor,No,NA,,Yes,,100,9,A,"Charter §258",,Controls budget preparation and execution.
+City Planning Commission,Chair,Mayor,No,5,,Yes,,53,8,A,"Charter §192",,Agenda-setting authority for land use decisions.
+City Planning Commission,Member (1 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,Shapes CPC votes on ULURP and zoning.
+City Planning Commission,Member (2 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,
+City Planning Commission,Member (3 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,
+City Planning Commission,Member (4 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,
+City Planning Commission,Member (5 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,
+City Planning Commission,Member (6 of 6 Mayoral),Mayor,Yes,5,,Yes,,53,7,A,"Charter §192",,
+Police Department,Commissioner,Mayor,No,NA,,Yes,,100,9,A,"Charter §434",,Leads NYPD operations and policy.
+Fire Department,Commissioner,Mayor,No,NA,,Yes,,100,9,A,"Charter §487",,Leads FDNY operations and policy.
+Department of Sanitation,Commissioner,Mayor,No,NA,,Yes,,100,8,A,"Charter §753",,Manages citywide sanitation services.
+Department of Citywide Administrative Services,Commissioner,Mayor,No,NA,,Yes,,100,8,A,"Charter §814",,Controls city personnel, facilities, and procurement standards.
+Department of Transportation,Commissioner,Mayor,No,NA,,Yes,,100,8,A,"Charter §2903",,Controls streets, traffic, and transit policy under city purview.
+Department of Housing Preservation and Development,Commissioner,Mayor,No,NA,,Yes,,100,8,A,"Charter §1802",,Leads housing development and preservation policy.
+Department of Health and Mental Hygiene,Commissioner,Mayor,No,NA,,Yes,,100,9,A,"Charter §556",,Leads public health policy and services.
+Law Department,Corporation Counsel,Mayor,No,NA,,Yes,,100,8,A,"Charter §394",,Chief legal officer for the city.
+Campaign Finance Board,Chair,Mayor (with Speaker consultation),No,5,,Yes,,40,7,A,"Charter §1052",,Oversees campaign finance enforcement and public matching funds.
+Board of Standards and Appeals,Chair,Mayor,Yes,6,,Yes,,60,7,A,"Charter §659",,Rules on zoning variances and appeals.
+Taxi and Limousine Commission,Commissioner/Chair,Mayor,Yes,7,,Yes,,100,7,A,"Charter §2301",,Regulates for-hire vehicle industry.
+Conflicts of Interest Board,Member (1 of 5),Mayor,Yes,6,,Yes,,40,7,A,"Charter §2602",,Enforces ethics laws.
+Economic Development Corporation,Board Member (Mayoral),Mayor,No,NA,,Yes,,Majority,7,A,"Not in Charter; see EDC bylaws",,Controls economic development strategy and projects.
+Office of Emergency Management,Commissioner,Mayor,No,NA,,Yes,,100,8,A,"Exec Order 165 / Charter §497",,Leads disaster preparedness and response.
+Office of Labor Relations,Commissioner,Mayor,No,NA,,Yes,,100,7,A,"Exec Order / Mayoral control",,Leads city labor negotiations.
+Office of Technology and Innovation,Commissioner/CTO,Mayor,No,NA,,Yes,,100,7,A,"Exec Order / Mayoral control",,Leads technology policy, digital services, and innovation.

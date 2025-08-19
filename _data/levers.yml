@@ -1,0 +1,177 @@
+# Uniform schema per plan
+# id, name, summary, authority_cites[], timeline[], checklist[], pitfalls[], signals[], beyond_mayor[], sources[]
+
+- id: executive-orders
+  name: Executive Orders & Mayor’s Office Reorg
+  summary: Restructure mayoral offices, delegate authority, and issue policy direction via EO.
+  tags: ["Org/EO"]
+  authority_cites:
+    - title: "NYC Charter §3 (general powers)"
+      url: "https://www.nyc.gov/site/council/about/nyc-charter.page"
+  timeline:
+    - "Draft EO (Mayor’s Counsel + relevant deputies)"
+    - "Internal review (Law + OMB as needed)"
+    - "Mayor signs; file with City Clerk/Comptroller"
+    - "Publish & notify agencies; update org charts/SOPs"
+  checklist:
+    - { owner: "Counsel", artifact: "EO text & delegation language" }
+    - { owner: "Law", artifact: "Legal sufficiency review" }
+    - { owner: "OPS", artifact: "Distribution + implementation memo" }
+  pitfalls:
+    - "Ambiguity in delegated authority"
+    - "Insufficient implementation comms"
+  signals:
+    - { name: "City Record notices (policy/structure)", source_url: "https://www.nyc.gov/cityrecord/" }
+  beyond_mayor:
+    - "Civil service and CBAs can constrain execution; legislative changes may be needed for structural shifts"
+  sources:
+    - "NYC Charter §3; prior EOs (link examples later)"
+
+- id: capa-rulemaking
+  name: CAPA Rulemaking
+  summary: How agencies create/amend rules (notice, hearing, adoption).
+  tags: ["Rulemaking"]
+  authority_cites:
+    - { title: "City Administrative Procedure Act (Charter ch. 45)", url: "https://rules.cityofnewyork.us/capa/" }
+  timeline:
+    - "Draft rule & internal review"
+    - "Publish Notice of Proposed Rule (City Record)"
+    - "Public hearing (≥30 days after notice)"
+    - "Consider comments & finalize"
+    - "Publish Notice of Adoption"
+    - "Effective date (~30 days unless immediate)"
+  checklist:
+    - { owner: "Agency Counsel", artifact: "Statement of Basis & Purpose" }
+    - { owner: "MOO/Law", artifact: "Certifications (plain-language/legal)" }
+    - { owner: "Agency", artifact: "Hearing logistics & transcript" }
+    - { owner: "Law", artifact: "Approval of adoption" }
+  pitfalls:
+    - "Insufficient notice or missing certifications"
+  signals:
+    - { name: "NYC Rules calendar", source_url: "https://rules.cityofnewyork.us/" }
+  beyond_mayor:
+    - "Risk of preemption by State/Council; litigation"
+  sources:
+    - "NYC Rules CAPA explainer"
+
+
+# Additional lever stubs
+
+- id: budget-execution
+  name: Budget Execution Levers
+  summary: Targets, PEGs, hiring controls, and financial plan updates to drive priorities.
+  tags: ["Budget"]
+  authority_cites: []
+  timeline: ["Issue PEG guidance", "Set hiring controls", "Prep FP update schedule"]
+  checklist:
+    - owner: OMB
+      artifact: PEG memo
+    - owner: OPS
+      artifact: Hiring controls notice
+  pitfalls: ["Labor/CBAs constraints"]
+  signals: []
+  beyond_mayor: ["Council adoption cycle; State constraints"]
+  sources: []
+
+- id: cpc-composition
+  name: City Planning Commission Composition & Agenda
+  summary: Shape land-use agenda via CPC chair and six mayoral seats.
+  tags: ["Land Use"]
+  authority_cites: []
+  timeline: ["Identify candidates", "Coordinate advice & consent (members)", "Seat chair"]
+  checklist:
+    - owner: "Mayor’s Appointments"
+      artifact: "Slate & vetting"
+  pitfalls: ["Vacancy timing; quorum risk"]
+  signals: []
+  beyond_mayor: ["Borough president/Public Advocate appointments"]
+  sources: []
+
+- id: ulurp-leverage
+  name: ULURP Pathway Influence
+  summary: Focus on certification, calendars, and CPC review windows.
+  tags: ["Land Use"]
+  authority_cites: []
+  timeline: ["Pre-cert review", "CPC calendar slotting", "Clock management"]
+  checklist:
+    - owner: DCP
+      artifact: Certification package
+  pitfalls: ["Clock slippage; EIS issues"]
+  signals: []
+  beyond_mayor: ["Council discretion; State overlays"]
+  sources: []
+
+- id: procurement-direction
+  name: Procurement Direction & Oversight
+  summary: What can/can’t be steered; where mayoral guidance is binding vs advisory.
+  tags: ["Procurement"]
+  authority_cites: []
+  timeline: ["Issue policy memo", "Align MOCS guidance", "Monitor City Record"]
+  checklist:
+    - owner: MOCS
+      artifact: Directive memo
+  pitfalls: ["Statutory/PPB rule limits"]
+  signals: []
+  beyond_mayor: ["Charter/PPB rules"]
+  sources: []
+
+- id: emergency-powers
+  name: Emergency Powers & OEM Coordination
+  summary: When and how to invoke emergency powers and coordinate incident response.
+  tags: ["Emergency"]
+  authority_cites: []
+  timeline: ["Emergency declaration", "ICS activation", "Reporting"]
+  checklist:
+    - owner: OEM
+      artifact: Incident Action Plan
+  pitfalls: ["Overreach; legal exposure"]
+  signals: []
+  beyond_mayor: ["Governor’s powers; Stafford Act"]
+  sources: []
+
+- id: transparency-directives
+  name: Data & Transparency Directives
+  summary: Citywide standards for reporting, dashboards, and Open Data expectations.
+  tags: ["Transparency"]
+  authority_cites: []
+  timeline: ["Issue data standards memo", "Set reporting cadence", "Publish dashboards"]
+  checklist:
+    - owner: "CTO/ODA"
+      artifact: Data standards
+    - owner: Agencies
+      artifact: Reporting plan
+  pitfalls: ["Data quality; legal/privacy"]
+  signals: []
+  beyond_mayor: ["Local Law mandates; COIB/Legal review"]
+  sources: []
+
+- id: boards-appointments
+  name: Boards & Commissions Appointments
+  summary: Cross-cutting control points across oversight and policy boards.
+  tags: ["Appointments"]
+  authority_cites: []
+  timeline: ["Prioritize Tier A", "Vetting", "Seat & organize"]
+  checklist:
+    - owner: Appointments
+      artifact: Vetting packets
+  pitfalls: ["Advice & consent delays"]
+  signals: []
+  beyond_mayor: ["Council/Speaker consultation where required"]
+  sources: []
+
+- id: admin-guidance
+  name: Administrative Guidance & Citywide Memos
+  summary: Direction via citywide memos that set expectations and schedules.
+  tags: ["Org/EO"]
+  authority_cites: []
+  timeline: ["Draft memo", "Legal review", "Issue & track compliance"]
+  checklist:
+    - owner: OPS
+      artifact: Guidance memo
+    - owner: Agencies
+      artifact: Compliance plan
+  pitfalls: ["Non-binding ambiguity"]
+  signals: []
+  beyond_mayor: ["LL mandates; CBAs"]
+  sources: []
+

@@ -1,0 +1,178 @@
+@charset "utf-8";
+/* ----- Print defaults ----- */
+@page {
+  size: Letter;
+  margin: 0.6in;
+}
+html, body { background: #fff !important; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* Hide site chrome in print */
+.topnav,
+.sidebar__right,
+.hero,
+.donyc-footer,
+.page__footer,
+.page__footer-follow,
+.page__footer-copyright { display: none !important; }
+
+/* Main content width -> full */
+.page,
+.page__inner-wrap,
+.page__content { max-width: 100% !important; width: 100% !important; }
+
+/* Typography */
+.page__content { font-size: 11.5pt; line-height: 1.45; color: #111; }
+.page__content h1 { font-size: 22pt; margin: 0 0 12pt; }
+.page__content h2 { font-size: 16pt; margin: 18pt 0 8pt; }
+.page__content h3 { font-size: 13pt; margin: 14pt 0 6pt; }
+
+/* Section rules / cards translate well in print */
+.card.card--section {
+  box-shadow: none !important;
+  border: 1px solid #eee;
+  padding: 12pt 14pt;
+  margin: 10pt 0 12pt;
+  border-radius: 8pt;
+}
+
+/* Page breaking: start major sections on new pages, but not the first one */
+.page__content h2:not(:first-of-type) { break-before: page; }
+
+/* Avoid awkward breaks */
+h2, h3, .card { break-inside: avoid; }
+ul, ol { break-inside: auto; }
+table, pre, blockquote { break-inside: avoid; }
+
+/* Links as plain text; optionally show the URL after */
+a { color: #111; text-decoration: underline; }
+a[href^="http"]:after {
+  content: " (" attr(href) ") ";
+  font-size: 9pt;
+  color: #666;
+}
+
+/* Images/tables fit page */
+img, svg { max-width: 100% !important; height: auto !important; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 6pt 8pt; }
+
+/* === Additional print nudge for report-quality output === */
+@media print {
+  body{ color:#000; }
+  a{ color:#000; text-decoration: underline; }
+  .topnav, .donyc-footer, .toc, .cta-button{ display:none !important; }
+  .card--section{ box-shadow:none; border:1px solid #ddd; }
+  table{ page-break-inside:auto; }
+  tr{ page-break-inside:avoid; page-break-after:auto; }
+  h1{ font-size: 28pt; }
+  h2{ font-size: 20pt; }
+  h3{ font-size: 14pt; }
+}
+
+/* === Brand-accurate print/PDF === */
+@page { size: letter portrait; margin: 0.65in; }
+
+@media print {
+  /* Preserve brand color backgrounds and borders in print */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body { background: #fff !important; color: var(--ink) !important; }
+  /* Hide chromes we don't want in the PDF */
+  .topnav, .page__footer, .breadcrumbs, .toc, .sidebar__right, .topnav__cta { display: none !important; }
+
+  /* Cards look like cards in print (no heavy shadows) */
+  .card, .card--section, .hero, .sidebar__right {
+    background: #fff !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: none !important;
+  }
+  .card--section::before,
+  .levers-list .card::before { background: var(--aqua) !important; } /* keep brand accent */
+
+  /* Links should be visible in grayscale too */
+  a { color: var(--ocean) !important; text-decoration: underline; }
+
+  /* Headings & page-break hygiene */
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  .card--section, table, .table { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Tables: no sticky in print; add clear header band */
+  .table--sticky thead th { position: static !important; }
+  thead th {
+    background: #F0F7FD !important;
+    color: var(--ink) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  /* Chips/tags keep brand accent but stay light for print */
+  .chip, .tag, .badge {
+    background: #fff !important;
+    border-color: var(--aqua) !important;
+    color: #000 !important;
+  }
+}
+
+/* ---- Brand-consistent print theme ---- */
+@page { size: auto; margin: 0.6in; }
+
+:root {
+  /* Use on-screen tokens so colors match the emerald/jade palette */
+  /* Assumes --ink, --ocean, --aqua, --paper, --line already exist */
+}
+
+html, body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color: var(--ink);
+  background: #fff !important;
+}
+
+.topnav, .page__footer, .donyc-footer,
+.topnav__cta, .hero .cta-button,
+.page__controls, .site-controls,
+button, .cta-button, .cta,
+[role="navigation"] {
+  display: none !important;
+}
+
+.hero, .card, .card--section, .toc, .sidebar__right {
+  box-shadow: none !important;
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+}
+
+/* keep the thin accent rule at top of cards */
+.card--section::before,
+.levers-list .card::before {
+  background: var(--aqua) !important;
+}
+
+h1, h2, h3 {
+  color: var(--ink) !important;
+  break-after: avoid;
+}
+p, li { line-height: 1.45; orphans: 3; widows: 3; }
+
+a, a:visited {
+  color: var(--ocean) !important;
+  text-decoration: underline !important;
+}
+/* optionally show the URL after links in body copy */
+.page__content a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 0.9em; color: var(--ink);
+}
+
+/* Tables: borders + sticky disable for print */
+table { page-break-inside: auto; }
+thead { display: table-header-group; }
+tfoot { display: table-footer-group; }
+.table--sticky thead th {
+  position: static !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+
+/* Remove anchor offset hacks for print */
+[id]::before { content: none !important; display: none !important; }

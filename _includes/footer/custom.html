@@ -1,0 +1,36 @@
+<script src="{{ '/assets/js/topnav.js' | relative_url }}"></script>
+<footer class="donyc-footer" role="contentinfo">
+  <div class="donyc-footer__inner">
+    <div class="donyc-footer__col donyc-footer__col--left">
+      <div class="donyc-footer__copyright">
+        <strong>© 2025 Day One for NYC</strong> · <span>Independent, non-partisan resource — not affiliated with any campaign or candidate. Content licensed CC BY 4.0 unless noted. This site provides information, not legal advice.</span>
+      </div>
+    </div>
+
+    <nav class="donyc-footer__col donyc-footer__col--center" aria-label="Footer">
+      <ul class="donyc-footer__nav">
+        <li><a href="/scope-of-mayoral-power/">Powers of the Mayor</a></li>
+        <li><a href="/levers/">Levers</a></li>
+        <li><a href="/appointments/">Appointments</a></li>
+        <li><a href="/calendars/">Calendars</a></li>
+        <li><a href="/resources/">Resources</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="donyc-footer__col donyc-footer__col--right">
+      <ul class="donyc-footer__social" aria-label="Social links">
+        <li>
+          <a href="mailto:info@day-one-nyc.org" class="social social--email" target="_blank" rel="noopener noreferrer" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.24l7.4 6.29a1 1 0 0 0 1.2 0L20 8.24V18H4z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+{% if page.classes contains 'page--power' %}
+  <script src="{{ '/assets/js/page-power-toc.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{% endif %}

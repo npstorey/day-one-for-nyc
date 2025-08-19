@@ -1,0 +1,5 @@
+{% assign t = include.tier | upcase %}
+{% if t == "A" %}<span class="badge badge--tierA">Tier A</span>
+{% elsif t == "B" %}<span class="badge badge--tierB">Tier B</span>
+{% else %}<span class="badge badge--tierC">Tier C</span>{% endif %}
+

@@ -1,0 +1,28 @@
+<input id="q" placeholder="Search levers and appointments…" style="padding:.5rem; width:100%; max-width:500px;">
+
+<ul id="results"></ul>
+<script>
+(function(){
+  const q = document.getElementById('q');
+  const data = { levers: {{ site.data.levers | jsonify }}, appointments: {{ site.data.appointments | jsonify }} };
+  q.addEventListener('input', e=>{
+    const term = e.target.value.toLowerCase();
+    const out = [];
+    if (!term) { document.getElementById('results').innerHTML = ""; return; }
+    data.levers.forEach(l=>{
+      if ((l.name + " " + l.summary).toLowerCase().includes(term)) {
+        out.push(`<li><a href="/levers/${l.id}/">${l.name}</a></li>`);
+      }
+    });
+    data.appointments.forEach(a=>{
+      const txt = (a.body_name + " " + a.seat_title).toLowerCase();
+      if (txt.includes(term)) {
+        const slug = (a.body_name + " " + a.seat_title).toLowerCase().replace(/[^a-z0-9]+/g,'-');
+        out.push(`<li><a href="/appointments/${slug}/">${a.body_name} — ${a.seat_title}</a></li>`);
+      }
+    });
+    document.getElementById('results').innerHTML = out.join("");
+  });
+})();
+</script>
+

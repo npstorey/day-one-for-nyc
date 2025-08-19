@@ -1,0 +1,57 @@
+title: "Day One NYC"
+description: "A public-yet-practical manual for governing NYC from day one of a new mayoral administration."
+url: ""
+baseurl: ""
+
+# Theme
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "default"
+logo: "/assets/img/favicon.svg"
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+
+# Markdown / Build
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: pretty
+
+# Collections
+collections:
+  levers:
+    output: true
+    permalink: /levers/:name/
+  appointments:
+    output: true
+    permalink: /appointments/:name/
+
+# Defaults for collections to use our custom layouts
+defaults:
+  - scope:
+      path: ""
+      type: "levers"
+    values:
+      layout: lever
+  - scope:
+      path: ""
+      type: "appointments"
+    values:
+      layout: appointment
+  - scope:
+      path: ""
+    values:
+      classes: wide
+
+# Search
+search: true
+
+timezone: America/New_York
+
+encoding: "utf-8"
+repository: npstorey/day-one-nyc
+
+

@@ -1,0 +1,73 @@
+Order,Category,Organization Name,Organization Type,Appointment to Make,Website URL
+1,Deputy Mayors (portfolio leadership),First Deputy Mayor,Mayoral Office,First Deputy Mayor,
+2,Deputy Mayors (portfolio leadership),Deputy Mayor for Operations,Mayoral Office,Deputy Mayor for Operations,
+3,Deputy Mayors (portfolio leadership),Deputy Mayor for Health and Human Services,Mayoral Office,Deputy Mayor for Health and Human Services,
+4,Deputy Mayors (portfolio leadership),Deputy Mayor for Public Safety,Mayoral Office,Deputy Mayor for Public Safety,
+5,Deputy Mayors (portfolio leadership),Deputy Mayor for Strategic Initiatives,Mayoral Office,Deputy Mayor for Strategic Initiatives,
+6,Deputy Mayors (portfolio leadership),Deputy Mayor for Administration and Chief of Staff,Mayoral Office,Chief of Staff,
+7,Deputy Mayors (portfolio leadership),Deputy Mayor for Communications,Mayoral Office,Deputy Mayor for Communications,
+8,Deputy Mayors (portfolio leadership),Deputy Mayor of Housing Economic and Workforce Development,Mayoral Office,Deputy Mayor for Economic and Workforce Development,
+9,Citywide coordination & shared services,Office of Intergovernmental Affairs,Mayoral Office,Deputy Mayor for Intergovernmental Affairs,https://www1.nyc.gov/site/intergovernmental/index.page
+10,Citywide coordination & shared services,Mayor's Office of Management and Budget,Mayoral Office,Director,https://www.nyc.gov/site/omb/index.page
+11,Citywide coordination & shared services,New York City Law Department,Mayoral Agency,Executive Director,https://www.nyc.gov/site/law/index.page
+12,Citywide coordination & shared services,Mayor's Office of Operations,Mayoral Office,Director,https://www.nyc.gov/site/operations/index.page
+13,Citywide coordination & shared services,Office of Technology and Innovation,Mayoral Office,Chief Technology Officer (CTO),https://www.nyc.gov/content/oti/pages/
+14,Citywide coordination & shared services,Mayor's Office of Contract Services,Mayoral Office,Director,https://www.nyc.gov/site/mocs/index.page
+15,Citywide coordination & shared services,Department of Citywide Administrative Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dcas/index.page
+16,Citywide coordination & shared services,Office of Labor Relations,Mayoral Office,Commissioner,https://www1.nyc.gov/site/olr/index.page
+17,Citywide coordination & shared services,Mayor's Office for International Affairs,Mayoral Office,Commissioner,https://www.nyc.gov/site/international/index.page
+18,Citywide coordination & shared services,Department of Records and Information Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/records/index.page
+19,Citywide coordination & shared services,Procurement Policy Board,Advisory or Regulatory Organization,Chair,https://www.nyc.gov/site/mocs/regulations/ppb.page
+20,Citywide coordination & shared services,Mayor's Office for Economic Opportunity,Mayoral Office,Executive Director,https://www.nyc.gov/site/opportunity/index.page
+21,Citywide coordination & shared services,Board of Elections,Advisory or Regulatory Organization,President,https://vote.nyc/
+22,Citywide coordination & shared services,Business Integrity Commission,Advisory or Regulatory Organization,Commissioner/Chair,https://www.nyc.gov/site/bic/index.page
+23,Citywide coordination & shared services,Center for Innovation through Data Intelligence,Mayoral Office,Executive Director,https://www.nyc.gov/site/cidi/index.page
+24,Citywide coordination & shared services,Chief Climate Officer,Mayoral Office,Chief Climate Officer,
+25,Citywide coordination & shared services,Chief Counsel to the Mayor and City Hall,Mayoral Office,Chief Counsel to the Mayor and City Hall,https://www1.nyc.gov/site/counseltothemayor/index.page
+26,Citywide coordination & shared services,Chief Efficiency Officer,Mayoral Office,Chief Efficiency Officer,
+27,Citywide coordination & shared services,City Commission on Human Rights,Advisory or Regulatory Organization,Commissioner,https://www.nyc.gov/site/cchr/index.page
+28,Citywide coordination & shared services,Civil Service Commission,Advisory or Regulatory Organization,Executive Director and General Counsel,https://www.nyc.gov/site/csc/index.page
+29,Citywide coordination & shared services,Conflicts of Interest Board,Advisory or Regulatory Organization,Executive Director,https://www.nyc.gov/site/coib/index.page
+30,Citywide coordination & shared services,Department of Design and Construction,Mayoral Agency,Commissioner,https://www.nyc.gov/site/ddc/index.page
+31,Citywide coordination & shared services,Department of Small Business Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/sbs/index.page
+32,Citywide coordination & shared services,Director of Communications,Mayoral Office,Director,
+33,Citywide coordination & shared services,Environmental Control Board,Advisory or Regulatory Organization,Chairperson (Commissioner & Chief Administrative Law Judge),https://www.nyc.gov/site/oath/hearings/about-ecb.page
+34,Citywide coordination & shared services,Mayor's Advance Team,Mayoral Office,Director,
+35,Citywide coordination & shared services,New York City Tax Commission,Mayoral Agency,President,https://www1.nyc.gov/site/taxcommission/index.page
+36,Citywide coordination & shared services,Office of Administrative Tax Appeals,Mayoral Agency,Director,https://www.nyc.gov/site/oata/index.page
+37,Citywide coordination & shared services,Office of Administrative Trials and Hearings,Mayoral Agency,Commissioner,https://www.nyc.gov/site/oath/index.page
+38,Public safety & oversight,New York City Police Department,Mayoral Agency,Commissioner,https://www.nyc.gov/site/nypd/index.page
+39,Public safety & oversight,Fire Department of the City of New York,Mayoral Agency,Commissioner,https://www.nyc.gov/site/fdny/index.page
+40,Public safety & oversight,Department of Correction,Mayoral Agency,Commissioner,https://www.nyc.gov/site/doc/index.page
+41,Public safety & oversight,Department of Investigation,Mayoral Agency,Commissioner,https://www.nyc.gov/site/doi/index.page
+42,Public safety & oversight,New York City Emergency Management,Mayoral Agency,Commissioner,https://www.nyc.gov/site/em/index.page
+43,Public safety & oversight,Department of Probation,Mayoral Agency,Commissioner,https://www.nyc.gov/site/probation/index.page
+44,Public safety & oversight,Civilian Complaint Review Board,Advisory or Regulatory Organization,Executive Director,https://www.nyc.gov/site/ccrb/index.page
+45,Public safety & oversight,Board of Correction,Advisory or Regulatory Organization,Executive Director,https://www.nyc.gov/site/boc/index.page
+46,Public safety & oversight,Office of the Inspector General for the NYPD,Mayoral Agency,Inspector General,https://www1.nyc.gov/site/doi/offices/oignypd.page
+47,"Education, health, and human services",New York City Public Schools,Mayoral Agency,Chancellor,https://www.schools.nyc.gov/
+48,"Education, health, and human services",Department of Health and Mental Hygiene,Mayoral Agency,Commissioner,https://www.nyc.gov/site/doh/index.page
+49,"Education, health, and human services",Department of Social Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dss/index.page
+50,"Education, health, and human services",Administration for Children's Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/acs/index.page
+51,"Education, health, and human services",Department of Youth and Community Development,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dycd/index.page
+52,"Education, health, and human services",Department for the Aging,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dfta/index.page
+53,"Education, health, and human services",Department of Veterans' Services,Mayoral Agency,Commissioner,https://www.nyc.gov/site/veterans/index.page
+54,"Education, health, and human services",Office of the Chief Medical Examiner,Mayoral Agency,Chief Medical Examiner,https://www1.nyc.gov/site/ocme/index.page
+55,"Education, health, and human services",Board of Health,Advisory or Regulatory Organization,Acting Health Commissioner,https://www1.nyc.gov/site/doh/about/about-doh/board-of-health.page
+56,"Housing, planning, development, and regulation",City Planning Commission,Advisory or Regulatory Organization,Chair and Director,https://www.nyc.gov/content/planning/pages/commission
+57,"Housing, planning, development, and regulation",Department of City Planning,Mayoral Agency,Director,https://www.nyc.gov/site/planning/index.page
+58,"Housing, planning, development, and regulation",Department of Housing Preservation and Development,Mayoral Agency,Acting Commissioner,https://www.nyc.gov/site/hpd/index.page
+59,"Housing, planning, development, and regulation",Department of Buildings,Mayoral Agency,Commissioner,https://www.nyc.gov/site/buildings/index.page
+60,"Housing, planning, development, and regulation",Landmarks Preservation Commission,Advisory or Regulatory Organization,Executive Director,https://www1.nyc.gov/site/lpc/index.page
+61,"Housing, planning, development, and regulation",Public Design Commission,Advisory or Regulatory Organization,Executive Director,https://www.nyc.gov/site/designcommission/index.page
+62,"Housing, planning, development, and regulation",Rent Guidelines Board,Advisory or Regulatory Organization,Executive Director,https://rentguidelinesboard.cityofnewyork.us/
+63,"Housing, planning, development, and regulation",Board of Standards and Appeals,Advisory or Regulatory Organization,Executive Director,https://www.nyc.gov/site/bsa/index.page
+64,"Infrastructure, environment, finance, and city life",New York City Department of Transportation,Mayoral Agency,Commissioner,https://www.nyc.gov/html/dot/html/home/home.shtml
+65,"Infrastructure, environment, finance, and city life",New York City Department of Sanitation,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dsny/index.page
+66,"Infrastructure, environment, finance, and city life",Department of Environmental Protection,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dep/index.page
+67,"Infrastructure, environment, finance, and city life",Department of Parks and Recreation,Mayoral Agency,Commissioner,https://www.nycgovparks.org/
+68,"Infrastructure, environment, finance, and city life",Department of Finance,Mayoral Agency,Commissioner,https://www.nyc.gov/site/finance/index.page
+69,"Infrastructure, environment, finance, and city life",New York City Taxi and Limousine Commission,Mayoral Agency,Commissioner,https://www.nyc.gov/site/tlc/index.page
+70,"Infrastructure, environment, finance, and city life",Department of Consumer and Worker Protection,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dca/index.page
+71,"Infrastructure, environment, finance, and city life",Department of Cultural Affairs,Mayoral Agency,Commissioner,https://www.nyc.gov/site/dcla/index.page
+72,"Infrastructure, environment, finance, and city life",Campaign Finance Board,Advisory or Regulatory Organization,Executive Director,https://www.nyccfb.info/

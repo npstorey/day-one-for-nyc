@@ -1,0 +1,12 @@
+{% if include.sources and include.sources.size > 0 %}
+<aside class="sources-box">
+  <h2>Sources</h2>
+  <ul>
+    {% for s in include.sources %}
+    <li>{% if s.url %}<a href="{{ s.url }}">{{ s.text }}</a>{% else %}{{ s.text }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
+
+

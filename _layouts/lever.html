@@ -1,0 +1,76 @@
+---
+layout: single
+---
+{% assign lever = site.data.levers | where: "id", page.lever_id | first %}
+
+<p class="muted"><strong>Public beta</strong>. This page is a content stub; more details will be added soon. For corrections or additions, email <a href="mailto:hello@dayonefor.nyc">hello@dayonefor.nyc</a>.</p>
+
+<p>{{ lever.summary }}</p>
+
+<h3>Authority</h3>
+<ul>
+  {% for a in lever.authority_cites %}
+    <li><a href="{{ a.url }}">{{ a.title }}</a></li>
+  {% endfor %}
+</ul>
+
+<h3>Timeline</h3>
+<ol>
+  {% for step in lever.timeline %}
+    <li>{{ step }}</li>
+  {% endfor %}
+</ol>
+
+<h3>Checklist</h3>
+<button id="copy-checklist" class="badge">Copy checklist</button>
+<ul>
+  {% for item in lever.checklist %}
+    <li><strong>{{ item.owner }}</strong> → {{ item.artifact }}{% if item.note %} — {{ item.note }}{% endif %}</li>
+  {% endfor %}
+</ul>
+
+{% if lever.pitfalls %}
+<h3>Pitfalls & Dependencies</h3>
+<ul>
+  {% for p in lever.pitfalls %}<li>{{ p }}</li>{% endfor %}
+</ul>
+{% endif %}
+
+{% if lever.signals %}
+<h3>Signals & Datasets</h3>
+<ul>
+  {% for sig in lever.signals %}
+    <li><a href="{{ sig.source_url }}">{{ sig.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if lever.beyond_mayor %}
+<div class="callout">
+  <strong>Beyond the Mayor:</strong>
+  <ul>{% for b in lever.beyond_mayor %}<li>{{ b }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% include sources_box.html %}
+
+<script>
+(function(){
+  const btn = document.getElementById('copy-checklist');
+  if (!btn) return;
+  btn.onclick = async () => {
+    const items = {{ lever.checklist | jsonify }};
+    const lines = items.map(i => `- ${i.owner} → ${i.artifact}${i.note ? " — " + i.note : ""}`);
+    try { await navigator.clipboard.writeText(lines.join("\n")); btn.textContent = "Copied!"; setTimeout(()=>btn.textContent="Copy checklist",1500); }
+    catch(e){ alert("Copy failed"); }
+  };
+})();
+</script>
+
+<style>
+  /* Remove decorative left rules from headings on lever pages */
+  h2::before, h3::before{ content: none !important; }
+  /* Avoid duplicate title: handled by the site header; this layout does not render an extra H1 */
+</style>
+
+

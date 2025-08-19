@@ -1,0 +1,28 @@
+name: Datafeeds Snapshots
+
+on:
+  schedule:
+    - cron: '0 11 * * *' # 7am ET (approx; GitHub uses UTC)
+  workflow_dispatch: {}
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch datafeeds
+        run: python scripts/fetch_datafeeds.py
+      - name: Commit snapshots
+        run: |
+          git config user.name "dayone-bot"
+          git config user.email "bot@day-one-nyc"
+          git add datafeeds/*.csv || true
+          git commit -m "chore(datafeeds): update snapshots" || echo "No changes"
+          git push
+
+

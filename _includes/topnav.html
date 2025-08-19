@@ -1,0 +1,31 @@
+<header id="topnav" class="topnav" role="banner" aria-label="Primary">
+  <div class="topnav__inner">
+    <a class="topnav__brand" href="/">
+      <img
+        class="topnav__logo"
+        src="/assets/img/day-one-nyc-logo.png"
+        alt="Day One for NYC"
+        width="168" height="40" loading="eager" decoding="sync"
+      />
+    </a>
+
+    <button class="topnav__toggle" aria-controls="topnav-menu" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="burger" aria-hidden="true"></span>
+    </button>
+
+    <nav id="topnav-menu" class="topnav__menu" role="navigation">
+      <ul class="topnav__list">
+        <li><a class="topnav__link topnav__link--white {% if page.section == 'levers' %}is-active{% endif %}" href="{{ '/levers/' | relative_url }}">Levers</a></li>
+        <li><a class="topnav__link topnav__link--white {% if page.section == 'appointments' %}is-active{% endif %}" href="{{ '/appointments/' | relative_url }}">Appointments</a></li>
+        <li><a class="topnav__link {% if page.section == 'calendars' %}is-active{% endif %}" href="{{ '/calendars/' | relative_url }}">Calendars</a></li>
+        <li><a class="topnav__link {% if page.section == 'resources' %}is-active{% endif %}" href="{{ '/resources/' | relative_url }}">Resources</a></li>
+        <li><a class="topnav__link {% if page.section == 'about' %}is-active{% endif %}" href="{{ '/about/' | relative_url }}">About</a></li>
+      </ul>
+      <div class="topnav__cta">
+        <span class="cta-push"><a class="cta-button" href="{{ '/assets/pdfs/scope-of-mayoral-power.pdf' | relative_url }}" download="scope-of-mayoral-power.pdf">Download the PDF</a></span>
+      </div>
+    </nav>
+  </div>
+</header>
+

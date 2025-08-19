@@ -1,0 +1,33 @@
+name: Generate Appointment Pages
+
+on:
+  push:
+    paths:
+      - "_data/appointments.csv"
+      - "scripts/generate_appointment_pages.py"
+      - "scripts/score_appointments.py"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Score appointments
+        run: python scripts/score_appointments.py
+      - name: Generate pages
+        run: python scripts/generate_appointment_pages.py
+      - name: Commit changes
+        run: |
+          git config user.name "dayone-bot"
+          git config user.email "bot@day-one-nyc"
+          git add _data/appointments.csv _appointments/
+          git commit -m "chore: score appointments & regenerate pages" || echo "No changes"
+          git push
+
+
