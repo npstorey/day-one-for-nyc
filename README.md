@@ -3,7 +3,7 @@
 **Day One for NYC** is an independent, nonpartisan guide to governing New York City from day one.  
 It maps the **scope of mayoral power**, highlights **high-impact appointments**, tracks **key calendars & legal clocks**, and curates **practical resources** for incoming leaders and the public.
 
-- **Live site:** https://dayonefor.nyc (placeholder)
+- **Live site:** https://dayonefor.nyc
 - **Contact:** hello@dayonefor.nyc
 
 > This is a **prototype** created and reviewed by people who used **generative-AI tools** to accelerate drafting and organization. Content is human-edited and fact-checked, and will continue to evolve. Spot an issue or have a correction? Please open a GitHub Issue or email **hello@dayonefor.nyc**.
