@@ -1,0 +1,24 @@
+{% if site.google_analytics %}
+<script>
+  // Only run on the live domain to avoid polluting data from previews
+  (function () {
+    var live = location.hostname === 'dayonefor.nyc';
+    if (!live) return;
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    // Transport via Beacon where possible; GA4 IP anonymization is default
+    gtag('config', '{{ site.google_analytics }}', { transport_type: 'beacon' });
+  })();
+</script>
+{% endif %}
+
+
