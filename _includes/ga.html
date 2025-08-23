@@ -2,7 +2,7 @@
 <script>
   // Only run on the live domain to avoid polluting data from previews
   (function () {
-    var live = location.hostname === 'dayonefor.nyc';
+    var live = (location.hostname === 'dayonefor.nyc' || location.hostname === 'www.dayonefor.nyc');
     if (!live) return;
 
     var s = document.createElement('script');

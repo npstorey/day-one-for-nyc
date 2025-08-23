@@ -1,5 +1,6 @@
 (function () {
-  if (location.hostname !== 'dayonefor.nyc' || typeof window.gtag !== 'function') return;
+  var live = (location.hostname === 'dayonefor.nyc' || location.hostname === 'www.dayonefor.nyc');
+  if (!live || typeof window.gtag !== 'function') return;
 
   // Track "Download the PDF" clicks (anchors with .pdf-btn)
   document.addEventListener('click', function (e) {
